@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,600,700,800,900&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a,
+img,
+span,
+input,
+button,
+ion-icon {
+  display: block;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+input {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+ion-icon {
+  pointer-events: none;
+}
+
+address {
+  font-style: normal;
+}
+
+html {
+  font-family: "Noto Sans TC", "sans-serif";
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(0deg, 0%, 9%);
+  color: hsl(0deg, 0%, 100%);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 0;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: hsl(0deg, 0%, 16%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(47deg, 88%, 56%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(36deg, 100%, 55%);
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    font-weight: 1.6;
+  }
+}
+.container {
+  padding-inline: 1.5rem;
+}
+
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  z-index: 1;
+  transition: 0.25s ease;
+  pointer-events: none;
+  inset: 0;
+}
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.d-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h1,
+.h2,
+.h3 {
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.h1 {
+  font-size: 4rem;
+}
+
+.h2 {
+  font-size: 3.2rem;
+}
+
+.h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-shadow: 0 0 15px hsl(47deg, 88%, 56%), 0 0 25px hsl(47deg, 88%, 56%);
+  color: hsl(47deg, 88%, 56%);
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.section {
+  padding-block: 80px;
+}
+
+.section-desc {
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: hsl(47deg, 88%, 56%);
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 575px) {
+  .container {
+    max-width: 540px;
+    margin-inline: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 740px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 3rem;
+  min-width: 6rem;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+.btn-primary {
+  color: hsl(0deg, 0%, 9%);
+  background-color: hsl(47deg, 88%, 56%);
+}
+.btn-primary:is(:hover, :focus) {
+  background-color: hsl(0deg, 0%, 100%);
+}
+.btn-secondary {
+  color: hsl(47deg, 88%, 56%);
+  background-color: hsl(0deg, 0%, 9%);
+}
+.btn-secondary:is(:hover, :focus) {
+  color: hsl(0deg, 0%, 9%);
+  background-color: hsl(37deg, 86%, 50%);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-block: 2rem;
+  width: 100%;
+  z-index: 4;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header.active {
+  background-color: hsl(0deg, 0%, 9%);
+  box-shadow: inset -1px -1px 2px hsla(0deg, 0%, 80%, 0.2),
+    2px 2px 15px hsla(0deg, 0%, 50%, 0.2);
+}
+.header__nav {
+  position: fixed;
+  top: 0;
+  left: -30rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  font-size: 2.5rem;
+  background-color: hsl(0deg, 0%, 9%);
+  visibility: hidden;
+  z-index: 2;
+  transition: 0.25s cubic-bezier(0.51, 0.03, 0.64, 0.28);
+}
+.header__nav .logo {
+  font-size: 2.8rem;
+}
+.header__nav.active {
+  visibility: visible;
+  transform: translateX(30rem);
+  transition: 0.5s cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid hsl(0deg, 0%, 93%);
+}
+.header__btn-close {
+  padding: 1rem;
+  font-size: 2rem;
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 50%;
+  box-shadow: inset -1px -1px 2px hsla(0deg, 0%, 50%, 0.2),
+    2px 2px 5px hsla(0deg, 0%, 40%, 0.2);
+}
+.header__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  height: 100%;
+}
+.header__link {
+  padding-block: 1.5rem;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+.header__link:is(:hover, :focus) {
+  color: hsl(47deg, 88%, 56%);
+}
+.header__actions {
+  display: flex;
+  text-align: center;
+  gap: 0.5rem;
+}
+.header__actions-btn {
+  padding: 1.2rem;
+  color: hsl(47deg, 88%, 56%);
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 4px;
+  box-shadow: inset -1px -1px 2px hsla(0deg, 0%, 50%, 0.2),
+    2px 2px 5px hsla(0deg, 0%, 40%, 0.2);
+  transition: 0.25s ease;
+}
+.header__actions-btn ion-icon {
+  --ionicon-stroke-width: 40px;
+}
+.header__actions-btn:hover {
+  color: hsl(0deg, 0%, 9%);
+  background-color: hsl(0deg, 0%, 93%);
+}
+.header__actions-text {
+  display: none;
+}
+
+@media screen and (min-width: 426px) {
+  .header__nav {
+    display: block;
+    max-width: 300px;
+    font-size: 1.6rem;
+  }
+  .header__list {
+    display: block;
+  }
+  .header__item:not(:last-child) {
+    border-bottom: 1px solid hsl(0deg, 0%, 93%);
+  }
+}
+@media screen and (min-width: 575px) {
+  .header .container {
+    max-width: unset;
+  }
+}
+@media screen and (min-width: 768px) {
+  .header .container {
+    padding-inline: 30px;
+  }
+  .header__actions {
+    gap: 1.5rem;
+  }
+  .header__actions-btn {
+    padding: 17px;
+  }
+  .header__actions-btn-action {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-inline: 2.5rem;
+    min-height: 5rem;
+    font-weight: 700;
+    color: hsl(0deg, 0%, 9%);
+    background-color: hsl(47deg, 88%, 56%);
+    transition: 0.25s ease;
+  }
+  .header__actions-btn-action ion-icon {
+    color: hsl(0deg, 0%, 9%);
+    --ionicon-stroke-width: 70px;
+  }
+  .header__actions-btn-action:is(:hover, :focus) {
+    background-color: hsl(0deg, 0%, 100%);
+  }
+  .header__actions-text {
+    display: block;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .header {
+    padding-block: 4rem;
+  }
+  .header .container {
+    max-width: 1180px;
+  }
+  .header .overlay {
+    display: none;
+  }
+  .header.active {
+    padding-block: 1.5rem;
+  }
+  .header.header-animate {
+    -webkit-animation: slide-in 1s ease forwards;
+    animation: slide-in 1s ease forwards;
+  }
+  @-webkit-keyframes slide-in {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .header__nav {
+    all: unset;
+  }
+  .header__nav.active {
+    all: unset;
+  }
+  .header__top {
+    display: none;
+  }
+  .header__list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .header__item:not(:last-child) {
+    border-bottom: none;
+  }
+  .header__link {
+    padding-inline: 1rem;
+  }
+  .header__actions-btn-toggle {
+    display: none;
+  }
+}
+.search-overlay {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  bottom: 50%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(59deg, 44%, 16%, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5;
+  transition: 0.25s cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+.search-overlay ion-icon {
+  color: hsl(0deg, 0%, 100%);
+}
+.search-overlay .container {
+  width: 100%;
+  max-width: 50rem;
+}
+.search-overlay.active {
+  top: 0;
+  bottom: 0;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+.search-overlay.active .search-overlay__wrap {
+  transform: scaleX(1);
+  transition: transform 0.25s cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+.search-overlay__close {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+  font-size: 20px;
+  padding: 10px;
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 50%;
+}
+.search-overlay__wrap {
+  position: relative;
+  transform: scaleX(0);
+  transition: transform 0.5s cubic-bezier(0.51, 0.03, 0.64, 0.28);
+}
+.search-overlay__input {
+  padding: 20px 40px;
+  font-weight: 500;
+  color: hsl(250deg, 6%, 80%);
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 0.6rem;
+}
+.search-overlay__input::-webkit-search-cancel-button {
+  display: none;
+}
+.search-overlay__btn {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+
+.hero {
+  padding-top: 140px;
+  padding-bottom: 80px;
+  background: linear-gradient(180deg, #232526, #414345);
+}
+.hero .container {
+  display: grid;
+  gap: 3rem;
+}
+.hero__title {
+  margin-bottom: 2.5rem;
+}
+.hero__text {
+  margin-bottom: 3rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.hero__banner {
+  margin-inline: auto;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+.hero__img {
+  aspect-ratio: 1/1;
+  border: 10px solid hsl(0deg, 0%, 100%);
+  border-radius: 50%;
+}
+.hero__img:not(:first-child) {
+  display: none;
+}
+.hero__img:first-child {
+  max-width: 50rem;
+  max-height: 50rem;
+}
+.hero__img:nth-child(2) {
+  width: 16rem;
+  height: 16rem;
+}
+.hero__img:nth-child(3) {
+  width: 25rem;
+  height: 25rem;
+}
+
+@media screen and (min-width: 575px) {
+  .hero .container {
+    max-width: 540px;
+    margin-inline: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero .container {
+    max-width: 740px;
+    margin-inline: auto;
+  }
+}
+@media screen and (min-width: 992px) {
+  .hero {
+    overflow: hidden;
+  }
+  .hero .container {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 960px;
+  }
+  .hero__banner {
+    position: relative;
+    padding-right: 5rem;
+    margin-top: 18rem;
+  }
+  .hero__img:not(:first-child) {
+    display: block;
+  }
+  .hero__img:nth-child(2) {
+    position: absolute;
+    top: -18rem;
+    right: 8rem;
+  }
+  .hero__img:nth-child(3) {
+    position: absolute;
+    top: -6rem;
+    right: -10rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .hero .container {
+    max-width: 1180px;
+  }
+}
+.category__head {
+  text-align: center;
+}
+.category__title {
+  margin-bottom: 6rem;
+}
+.category__card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: hsl(0deg, 0%, 16%);
+  border-radius: 0.6rem;
+  transition: 0.25s ease;
+}
+.category__card-icon-wrap {
+  display: grid;
+  place-items: center;
+  min-width: 6rem;
+  height: 6rem;
+  font-size: 3rem;
+  color: hsl(47deg, 88%, 56%);
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 0.4rem;
+  transition: 0.25s ease;
+}
+.category__card-title {
+  color: hsl(0deg, 0%, 93%);
+}
+.category__card-text {
+  font-weight: 600;
+  color: hsl(250deg, 6%, 80%);
+  margin-top: 0.5rem;
+}
+.category__card:is(:hover, :focus-within) {
+  background-color: hsl(47deg, 88%, 56%);
+}
+.category__card:is(:hover, :focus-within) .category__card-icon-wrap {
+  color: hsl(0deg, 0%, 9%);
+  background-color: hsla(0deg, 0%, 100%, 0.1);
+}
+.category__card:is(:hover, :focus-within) .category__card-title,
+.category__card:is(:hover, :focus-within) .category__card-text {
+  color: hsl(0deg, 0%, 9%);
+}
+
+@media screen and (min-width: 575px) {
+  .category__title {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .category__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 992px) {
+  .category__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.about {
+  padding-top: 0;
+}
+.about__banner {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  margin-bottom: 4rem;
+}
+.about__img {
+  border-radius: 0.4rem;
+}
+.about__img:first-child {
+  max-width: 56rem;
+  max-width: 59rem;
+}
+.about__img:nth-child(2) {
+  width: 188px;
+  height: 252px;
+}
+.about__img:last-child {
+  width: 15rem;
+  height: 20rem;
+}
+.about__img:not(:first-child) {
+  display: none;
+}
+.about__desc {
+  margin-bottom: 1rem;
+}
+.about__list {
+  margin-block: 5rem 6rem;
+}
+.about__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+.about__item-icon-wrap {
+  padding: 1.5rem;
+  font-size: 2rem;
+  background-color: hsla(36deg, 100%, 55%, 0.1);
+  border-radius: 50%;
+}
+.about__item-title {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.about__item-text {
+  font-weight: 500;
+}
+.about__item:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 575px) {
+  .about__banner {
+    position: relative;
+  }
+  .about__img:nth-child(2) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+    border: 2px solid hsl(0deg, 0%, 100%);
+  }
+}
+@media screen and (min-width: 768px) {
+  .about__banner {
+    margin-inline: 12rem 13rem;
+  }
+  .about__img:nth-child(2) {
+    top: 50%;
+    right: -13rem;
+    transform: translateY(-50%);
+  }
+  .about__img:last-child {
+    position: absolute;
+    top: 15%;
+    left: -12rem;
+    display: block;
+    z-index: -1;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+  .about__banner {
+    -webkit-margin-start: -3rem;
+    margin-inline-start: -3rem;
+  }
+}
+.courses {
+  background: linear-gradient(270deg, #000000, #434343);
+}
+.courses__head {
+  text-align: center;
+}
+.courses__list {
+  margin-block: 6rem;
+}
+.courses__card {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 0.6rem;
+}
+.courses__card-banner {
+  overflow: hidden;
+}
+.courses__card-banner img {
+  transition: 0.5s ease;
+}
+.courses__card-floating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  width: 100%;
+}
+.courses__card-floating-level {
+  padding: 4px 12px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: hsl(47deg, 88%, 56%);
+  background-color: hsl(0deg, 0%, 9%);
+  border-radius: 0.4rem;
+}
+.courses__card-floating-btn {
+  margin: 0.5rem;
+  padding: 0.6rem;
+  font-size: 1.8rem;
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsla(47deg, 88%, 56%, 0.1);
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+}
+.courses__card-floating-btn.active {
+  color: hsl(0deg, 100%, 63%);
+}
+.courses__card-floating-btn.active ion-icon {
+  transform: scale(0.9);
+}
+.courses__card-floating-icon {
+  transition: 0.25s ease;
+}
+.courses__card-content {
+  padding: 2.5rem 2rem;
+}
+.courses__card-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+}
+.courses__card-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.courses__card-item ion-icon {
+  --ionicon-stroke-width: 4rem;
+}
+.courses__card-item-text {
+  font-weight: 500;
+}
+.courses__card-title {
+  margin-block: 1rem 1.5rem;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  line-height: 1.6;
+  transition: 0.25s ease;
+}
+.courses__card-title:is(:hover, :focus) {
+  color: hsl(47deg, 88%, 56%);
+}
+.courses__card-ratting-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  -webkit-margin-after: 25px;
+  margin-block-end: 25px;
+}
+.courses__card-ratting {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 18px;
+  color: hsl(36deg, 100%, 55%);
+}
+.courses__card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  -webkit-padding-before: 25px;
+  padding-block-start: 25px;
+  border-top: 1px solid hsl(0deg, 0%, 93%);
+}
+.courses__card-footer-price,
+.courses__card-footer-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.courses__card-footer-sale {
+  color: hsl(47deg, 88%, 56%);
+  font-size: 2rem;
+  font-weight: 700;
+}
+.courses__btn {
+  margin-inline: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .courses__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 992px) {
+  .section {
+    padding-block: 12rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .courses__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .courses__item:nth-child(3) img {
+    aspect-ratio: 4/3;
+  }
+}
+.workshops {
+  color: hsl(0deg, 0%, 9%);
+  background-color: hsl(47deg, 88%, 56%);
+}
+.workshops__banner {
+  overflow: hidden;
+  -webkit-margin-after: 3rem;
+  margin-block-end: 3rem;
+  border-radius: 0.6rem;
+}
+.workshops__head {
+  text-align: center;
+}
+.workshops__desc {
+  color: hsl(0deg, 0%, 9%);
+}
+.workshops__text {
+  margin-block: 2rem;
+}
+
+@media screen and (min-width: 992px) {
+  .workshops .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+  .workshops__banner {
+    order: 1;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .workshops__text {
+    margin-block: 4rem 5rem;
+  }
+}
+.newsletter {
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    hsl(222deg, 8%, 15%),
+    hsl(222deg, 9%, 20%)
+  );
+}
+.newsletter__title {
+  margin-block: 1rem 3rem;
+}
+.newsletter__input-wrap {
+  position: relative;
+}
+.newsletter__input {
+  -webkit-margin-after: 2rem;
+  margin-block-end: 2rem;
+  padding-inline: 4.5rem 2rem;
+  height: 6rem;
+  background-color: hsl(0deg, 0%, 9%);
+  color: inherit;
+  border-radius: 0.6rem;
+}
+.newsletter__icon {
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  --ionicon-stroke-width: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .newsletter__form {
+    position: relative;
+  }
+  .newsletter__btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .newsletter__form {
+    margin-inline: auto;
+    max-width: 65rem;
+  }
+  .newsletter__btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+.footer__top {
+  display: grid;
+  gap: 6rem;
+  padding-block: 6rem 5rem;
+}
+.footer__text {
+  margin-block: 2.5rem 3.5rem;
+}
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.footer__socials-link {
+  padding: 1.4rem;
+  font-size: 2.2rem;
+  background-color: hsla(0deg, 0%, 100%, 0.1);
+  border-radius: 0.4rem;
+  transition: 0.25s ease;
+}
+.footer__socials-link:is(:hover, :focus) {
+  background-color: hsl(47deg, 88%, 56%);
+}
+.footer__list-title {
+  margin-bottom: 2rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+.footer__list-item,
+.footer__list-link {
+  display: flex;
+  gap: 0.8rem;
+}
+.footer__list-item {
+  align-items: baseline;
+}
+.footer__list-item address {
+  flex: 1;
+}
+.footer__list-item ion-icon {
+  --ionicon-stroke-width: 50px;
+}
+.footer__list-link {
+  align-items: center;
+  padding-block: 1rem;
+  transition: 0.25s ease;
+}
+.footer__list-link:not(address):is(:hover, :focus) {
+  color: hsl(47deg, 88%, 56%);
+}
+.footer__bottom {
+  padding-block: 2rem;
+  text-align: center;
+}
+.footer__link {
+  display: inline-block;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+.footer__link:is(:hover, :focus) {
+  color: hsl(47deg, 88%, 56%);
+}
+
+@media screen and (min-width: 575px) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer__brand {
+    grid-column: 1/3;
+  }
+}
+@media screen and (min-width: 768px) {
+  .footer__top {
+    gap: 3rem;
+    padding-block: 8rem 7rem;
+  }
+  .footer__brand {
+    grid-column: auto;
+  }
+}
+@media screen and (min-width: 992px) {
+  .footer__top {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer__top {
+    padding-block: 12rem 8rem;
+  }
+}
+.back-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+  padding: 1.2rem;
+  font-size: 2.2rem;
+  background-color: hsl(36deg, 100%, 55%);
+  color: hsl(0deg, 0%, 100%);
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 3;
+  transition: 0.25s ease;
+}
+.back-top-btn.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-1rem);
+} /*# sourceMappingURL=styles.css.map */
+
+	</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <!-- logo -->
+    <h1 class="header__logo">
+      <a href="https://www.himalyanpublicschool.in/" class="logo">Himalyan</a>
+    </h1>
+
+    <!-- nav -->
+    <nav class="header__nav">
+      <!-- nav top -->
+      <div class="header__top">
+        <a href="https://himalyanpublicschool.w3spaces.com/virtualstudy.html" class="logo">Virtual Study</a>
+        <button class="header__btn-close">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <!-- nav list -->
+      <ul class="header__list"><li class="header__item"><a href="https://www.himalyanpublicschool.in/" class="header__link">Himalyan</a></li>
+        
+        <li class="header__item"><a href="https://www.himalyanpublicschool.in/faculty" class="header__link">About</a></li>
+        <li class="header__item"><a href="https://himalyanpublicschool.w3spaces.com/service.html" class="header__link">Virtual Mode</a></li>
+        <li class="header__item"><a href="https://www.himalyanpublicschool.in/contact" class="header__link">Contact us</a>
+        	<li class="header__item"><a href="https://kaisthagroups.w3spaces.com/objectd1.0.html" class="header__link">Object Detection</a></li></li>
+        <li class="header__item"><a href="https://www.youtube.com/channel/UCkw7RfvKhiYlX3N0IWBNbWQ" class="header__link">Youtube Channel</a></li> 
+        <li class="header__item"><a href="https://www.youtube.com/@Himalyan-Public-School/playlists" class="header__link">YT Playlist</a></li>
+        <li class="header__item"><a href="https://himalyanpublicschool.w3spaces.com/ytlinkpaste.html" class="header__link">YT Link </a></li>
+      </ul>
+    </nav>
+
+    <!-- actions -->
+    <div class="header__actions">
+      <!-- search -->
+      <button class="header__actions-btn header__actions-btn-search">
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
+
+      <!-- login / register -->
+      <a href="https://www.himalyanpublicschool.in/himalaya/" class="header__actions-btn header__actions-btn-action">
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+        <span class="header__actions-text" aria-hidden="true">Login/Regester</span>
+      </a>
+
+      <!-- toggle -->
+      <button class="header__actions-btn header__actions-btn-toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+    </div>
+
+    <!-- overlay -->
+    <div class="overlay"></div>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay">
+  <div class="container">
+    <!-- close button -->
+    <button class="search-overlay__close">
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+
+    <!-- search form -->
+    <div class="search-overlay__wrap">
+      <input type="search" name="search" placeholder="please enter keywords ..." class="search-overlay__input" autocomplete="off">
+
+      <button class="search-overlay__btn">
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <article>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container">
+        <!-- hero content -->
+        <div class="hero__content">
+          <p class="section-desc hero__desc">EDUCATION, CHANGE YOUR LIFE</p>
+
+          <h2 class="h1 hero__title">Top companies choose Educates to build the workplace skills their employees need.</h2>
+
+          <p class="hero__text">Learners all over the world are starting new careers, reaching higher levels in their fields, and leading richer and better lives.</p>
+
+          <a href="https://himalyanpublicschool.w3spaces.com/explorationhimalyan.html" class="btn btn-primary">
+            <span class="hero__btn-text">Start Your Experience Now</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </a>
+        </div>
+
+        <!-- hero banner -->
+        <figure class="hero__banner">
+          <img loading="lazy" class="img-cover hero__img" src="https://www.himalyanpublicschool.in/assets/frontend/images/portfolio/30.png" alt="hero image">
+
+          <img loading="lazy" class="img-cover hero__img" src="https://images.unsplash.com/photo-1515073838964-4d4d56a58b21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="hero image">
+
+          <img loading="lazy" class="img-cover hero__img" src="https://www.himalyanpublicschool.in/assets/frontend/images/portfolio/44.png" alt="hero image">
+        </figure>
+      </div>
+    </section>
+
+    <!-- CATEGORY -->
+    <section class="section category">
+      <div class="container">
+        <!-- head -->
+        <div class="category__head">
+          <p class="section-desc category__desc">COURSE CATEGORY</p>
+          <h2 class="h2 category__title">Main Courses</h2>
+        </div>
+
+        <!-- category list -->
+        <ul class="d-grid category__list">
+          <!-- category item 1 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="briefcase-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">IT and Software</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 2 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="file-tray-full-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Physics</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 3 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="color-palette-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Chemistry</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 4 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="layers-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Biology</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 5 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="laptop-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Mathematics</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 6 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="thumbs-up-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">English</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 7 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="headset-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Hindi</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 8 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="server-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Physical Education/Games</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+
+          <!-- category item 9 -->
+          <li class="category__item">
+            <div class="category__card">
+              <!-- icon -->
+              <div class="category__card-icon-wrap">
+                <ion-icon name="medkit-outline"></ion-icon>
+              </div>
+
+              <!-- content -->
+              <div class="category__conteent">
+                <h3 class="h3 category__card-title">
+                  <a href="#" class="category__card-link">Sanskrit</a>
+                </h3>
+
+                <span class="category__card-text"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="container">
+        <!-- about banner -->
+        <figure class="about__banner">
+          <img class="img-cover about__img" src="https://www.himalyanpublicschool.in/uploaded/adminpanel/achievement/3IgKT_Picture1.jpg" alt="about image">
+
+          <img class="img-cover about__img" src="https://www.himalyanpublicschool.in/uploaded/adminpanel/gallery/D2noq_r1.jpg" alt="about image">
+
+          <img class="img-cover about__img" src="https://www.himalyanpublicschool.in/uploaded/adminpanel/gallery/aidrR_IMG-20220928-WA0001(1).jpg" alt="about image">
+        </figure>
+
+        <!-- about content -->
+        <div class="about__content">
+          <!-- about head -->
+          <div class="about__head">
+            <p class="section-desc about__desc">ABOUT US</p>
+            <h2 class="h2 about__-title">We share knowledge with the world</h2>
+          </div>
+
+          <!-- about list -->
+          <ul class="about__list">
+            <!-- about item 1 -->
+            <li class="about__item">
+              <!-- icon -->
+              <div class="about__item-icon-wrap">
+                <ion-icon class="about__item-icon" name="accessibility-outline"></ion-icon>
+              </div>
+
+              <div class="about__item-content">
+                <h3 class="h3 about__item-title">Enterprise level lecturer</h3>
+                <p class="about__item-text">
+                  Develop and teach courses on business and industry topics
+                  soluta.
+                </p>
+              </div>
+            </li>
+
+            <!-- about item 2 -->
+            <li class="about__item">
+              <!-- icon -->
+              <div class="about__item-icon-wrap">
+                <ion-icon class="about__item-icon" name="book-outline"></ion-icon>
+              </div>
+
+              <div class="about__item-content">
+                <h3 class="h3 about__item-title">Continuously update course content</h3>
+                <p class="about__item-text">
+                  Conduct research and development projects
+                  soluta.
+                </p>
+              </div>
+            </li>
+
+            <!-- about item 3 -->
+            <li class="about__item">
+              <!-- icon -->
+              <div class="about__item-icon-wrap">
+                <ion-icon class="about__item-icon " name="medal-outline"></ion-icon>
+              </div>
+
+              <div class="about__item-content">
+                <h3 class="h3 about__item-title">The largest student discussion community</h3>
+                <p class="about__item-text">
+                  Stay up-to-date on the latest business trends and developments
+                  soluta.
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="https://www.himalyanpublicschool.in/" class="btn btn-primary">
+            <span class="span">Get to know us</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="section courses">
+      <div class="container">
+        <!-- courses head -->
+        <div class="courses__head">
+          <p class="section-desc">POPULAR COURSES</p>
+          <h2 class="h2 courses__title">Our most popular courses</h2>
+        </div>
+
+        <!-- courses list -->
+        <ul class="d-grid courses__list">
+          <!-- courses item 1 -->
+          <li class="courses__item">
+            <!-- card -->
+            <div class="courses__card">
+              <!-- banner -->
+              <figure class="courses__card-banner">
+                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80" alt="courses img" class="img-cover courses__img">
+              </figure>
+
+              <!-- floating element -->
+              <div class="courses__card-floating">
+                <span class="courses__card-floating-level">Intermediate</span>
+
+                <button class="courses__card-floating-btn">
+                  <ion-icon class="courses__card-floating-icon" name="heart"></ion-icon>
+                </button>
+              </div>
+
+              <!-- content -->
+              <div class="courses__card-content">
+                <!-- list -->
+                <ul class="courses__card-list">
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="reader-outline"></ion-icon>
+                    <span class="courses__card-item-text">35 chapters</span>
+                  </li>
+
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="time-outline"></ion-icon>
+                    <time class="courses__card-item-time">18hr. 15min.</time>
+                  </li>
+                </ul>
+
+                <!-- courses name -->
+                <h3 class="h3 courses__card-title">
+                  <a href="#" class="courses__card-link">Adobe XD Web design</a>
+                </h3>
+
+                <!-- ratting -->
+                <div class="courses__card-ratting-wrap">
+                  <div class="courses__card-ratting">
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star-half-outline"></ion-icon>
+                  </div>
+
+                  <span class="courses__card-ratting-text">(18 comments)</span>
+                </div>
+
+                <!-- footer -->
+                <div class="courses__card-footer">
+                  <div class="courses__card-footer-price">
+                    <span class="courses__card-footer-sale">$600</span>
+                    <del class="courses__card-footer-origin">$900</del>
+                  </div>
+
+                  <div class="courses__card-footer-item">
+                    <ion-icon class="courses__card-footer-item-icon" name="people-outline"></ion-icon>
+                    <span class="courses__card-footer-item-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- courses item 2 -->
+          <li class="courses__item">
+            <!-- card -->
+            <div class="courses__card">
+              <!-- banner -->
+              <figure class="courses__card-banner">
+                <img style="aspect-ratio: 4 / 3;" src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80" alt="courses img" class="img-cover courses__img">
+              </figure>
+
+              <!-- floating element -->
+              <div class="courses__card-floating">
+                <span class="courses__card-floating-level">Advanced</span>
+
+                <button class="courses__card-floating-btn">
+                  <ion-icon class="courses__card-floating-icon" name="heart"></ion-icon>
+                </button>
+              </div>
+
+              <!-- content -->
+              <div class="courses__card-content">
+                <!-- list -->
+                <ul class="courses__card-list">
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="reader-outline"></ion-icon>
+                    <span class="courses__card-item-text">21 chapters</span>
+                  </li>
+
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="time-outline"></ion-icon>
+                    <time class="courses__card-item-time">11hr. 04min.</time>
+                  </li>
+                </ul>
+
+                <!-- courses name -->
+                <h3 class="h3 courses__card-title">
+                  <a href="#" class="courses__card-link">Digital Marketing Course</a>
+                </h3>
+
+                <!-- ratting -->
+                <div class="courses__card-ratting-wrap">
+                  <div class="courses__card-ratting">
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star-outline"></ion-icon>
+                  </div>
+
+                  <span class="courses__card-ratting-text"></span>
+                </div>
+
+                <!-- footer -->
+                <div class="courses__card-footer">
+                  <div class="courses__card-footer-price">
+                    <span class="courses__card-footer-sale">$330</span>
+                    <del class="courses__card-footer-origin">$600</del>
+                  </div>
+
+                  <div class="courses__card-footer-item">
+                    <ion-icon class="courses__card-footer-item-icon" name="people-outline"></ion-icon>
+                    <span class="courses__card-footer-item-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          
+
+          <!-- courses item 5 -->
+          <li class="courses__item">
+            <!-- card -->
+            <div class="courses__card">
+              <!-- banner -->
+              <figure class="courses__card-banner">
+                <img src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="courses img" class="img-cover courses__img">
+              </figure>
+
+              <!-- floating element -->
+              <div class="courses__card-floating">
+                <span class="courses__card-floating-level">Advanced</span>
+
+                <button class="courses__card-floating-btn">
+                  <ion-icon class="courses__card-floating-icon" name="heart"></ion-icon>
+                </button>
+              </div>
+
+              <!-- content -->
+              <div class="courses__card-content">
+                <!-- list -->
+                <ul class="courses__card-list">
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="reader-outline"></ion-icon>
+                    <span class="courses__card-item-text">40 chapters</span>
+                  </li>
+
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="time-outline"></ion-icon>
+                    <time class="courses__card-item-time">25hr 00min.</time>
+                  </li>
+                </ul>
+
+                <!-- courses name -->
+                <h3 class="h3 courses__card-title">
+                  <a href="#" class="courses__card-link">Morden Web development</a>
+                </h3>
+
+                <!-- ratting -->
+                <div class="courses__card-ratting-wrap">
+                  <div class="courses__card-ratting">
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star-outline"></ion-icon>
+                  </div>
+
+                  <span class="courses__card-ratting-text"></span>
+                </div>
+
+                <!-- footer -->
+                <div class="courses__card-footer">
+                  <div class="courses__card-footer-price">
+                    <span class="courses__card-footer-sale">$1,000</span>
+                    <del class="courses__card-footer-origin">$2,200</del>
+                  </div>
+
+                  <div class="courses__card-footer-item">
+                    <ion-icon class="courses__card-footer-item-icon" name="people-outline"></ion-icon>
+                    <span class="courses__card-footer-item-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- courses item 6 -->
+          <li class="courses__item">
+            <!-- card -->
+            <div class="courses__card">
+              <!-- banner -->
+              <figure class="courses__card-banner">
+                <img src="https://images.unsplash.com/photo-1518818608552-195ed130cdf4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="courses img" class="img-cover courses__img">
+              </figure>
+
+              <!-- floating element -->
+              <div class="courses__card-floating">
+                <span class="courses__card-floating-level">Intermediate</span>
+
+                <button class="courses__card-floating-btn">
+                  <ion-icon class="courses__card-floating-icon" name="heart"></ion-icon>
+                </button>
+              </div>
+
+              <!-- content -->
+              <div class="courses__card-content">
+                <!-- list -->
+                <ul class="courses__card-list">
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="reader-outline"></ion-icon>
+                    <span class="courses__card-item-text">60 chapters</span>
+                  </li>
+
+                  <li class="courses__card-item">
+                    <ion-icon class="courses__card-item-icon" name="time-outline"></ion-icon>
+                    <time class="courses__card-item-time">40hr. 00min.</time>
+                  </li>
+                </ul>
+
+                <!-- courses name -->
+                <h3 class="h3 courses__card-title">
+                  <a href="#" class="courses__card-link">Java course</a>
+                </h3>
+
+                <!-- ratting -->
+                <div class="courses__card-ratting-wrap">
+                  <div class="courses__card-ratting">
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star"></ion-icon>
+                    <ion-icon class="courses__card-rating-star" name="star-outline"></ion-icon>
+                  </div>
+
+                  <span class="courses__card-ratting-text"></span>
+                </div>
+
+                <!-- footer -->
+                <div class="courses__card-footer">
+                  <div class="courses__card-footer-price">
+                    <span class="courses__card-footer-sale">$900</span>
+                    <del class="courses__card-footer-origin">$3,000</del>
+                  </div>
+
+                  <div class="courses__card-footer-item">
+                    <ion-icon class="courses__card-footer-item-icon" name="people-outline"></ion-icon>
+                    <span class="courses__card-footer-item-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <a href="https://himalyanpublicschool.w3spaces.com/scienceworld.html" class="btn btn-primary courses__btn">
+          <span>Science World for students and teachers</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </a>
+      </div>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section id="workshops" class="section workshops">
+      <div class="container">
+        <!-- banner -->
+        <figure class="workshops__banner">
+          <img src="data:image/jpeg;base64,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" alt="workshops img" class="img-cover workshops__img">
+        </figure>
+
+        <!-- content -->
+        <div class="workshops__content">
+          <!-- head -->
+          <div class="workshops__head">
+            <p class="section-desc workshops__desc">FREE SEMINAR</p>
+            <h2 class="h2 workshops__title">Join our free seminar</h2>
+          </div>
+
+          <p class="workshops__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet, consect adipi scing elit, sed do
+            eiusmod tempor
+            incididunt ut sed do eiusmod tempor incididunt ut labore et dolore aliqua.
+          </p>
+
+          <a href="" class="btn btn-secondary workshops__btn">
+            <span class="workshops__btn-text">Himalyan Operating System</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section newsletter">
+      <div class="container">
+        <!-- head -->
+        <div class="newsletter__head">
+          <p class="section-subtitle newsletter__desc">Subscribe to newsletter</p>
+          <h2 class="h2 newsletter__title">Receive all the latest news</h2>
+        </div>
+
+        <!-- form -->
+        <form class="newsletter__form">
+          <!-- email input -->
+          <div class="newsletter__input-wrap">
+            <input type="email" name="email_address" aria-label="email" placeholder="please enter your email id" required class="newsletter__input">
+            <ion-icon class="newsletter__icon" name="mail-open-outline"></ion-icon>
+          </div>
+
+          <!-- submit button -->
+          <button type="submit" class="btn btn-primary newsletter__btn">
+            <span class="span">Submit</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <!-- footer top -->
+        <div class="footer__top">
+          <!-- brand -->
+          <div class="footer__brand">
+            <a href="https://www.himalyanpublicschool.in/" class="logo footer__logo">Himalyan</a>
+
+            <p class="footer__text">
+              For us, in HIMALYAN the above exerpt from Tagore's Gitanjali is very much pertinent as we had started this school with a vision of being accredited as The School Of Creative And Innovative Nation Builders.
+            </p>
+
+            <!-- socials -->
+            <ul class="footer__socials">
+              <li class="footer__socials-item">
+                <a href="https://www.facebook.com/himalyannagrotabagwan/" class="footer__socials-link">
+                  <ion-icon class="footer__socials-icon" name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer__socials-item">
+                <a href="https://www.linkedin.com/in/himalyan-public-school-a6207224a?originalSubdomain=in" class="footer__socials-link">
+                  <ion-icon class="footer__socials-icon" name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer__socials-item">
+                <a href="https://www.youtube.com/channel/UCkw7RfvKhiYlX3N0IWBNbWQ" class="footer__socials-link">
+                  <ion-icon class="footer__socials-icon" name="logo-youtube"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+          <!-- footer list -->
+          <ul class="footer__list">
+            <li class="footer__list-item">
+              <p class="footer__list-title">Contact Info</p>
+            </li>
+
+            <li class="footer__list-item">
+              <ion-icon name="location-outline"></ion-icon>
+
+              <address class="footer__list-link">
+                
+              </address>
+            </li>
+
+            <li class="footer__list-item">
+              <ion-icon name="call"></ion-icon>
+
+              <a href="#" class="footer__list-link">
+                 Phone : 01892-294286
+              </a>
+            </li>
+
+
+            <li class="footer__list-item">
+              <ion-icon name="mail-outline"></ion-icon>
+
+              <a href="#" class="footer__list-link">
+                Email :principal@himalyanpublicschool.in
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- footer bottom -->
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            Copyright 2024 Himalyan. 
+          </p>
+        </div>
+      </div>
+    </footer>
+  </article>
+</main>
+
+<!-- BACK TO TOP -->
+<a href="#top" class="back-top-btn">
+  <ion-icon name="arrow-up"></ion-icon>
+</a>
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script type="text/javascript">
+	const header = document.querySelector("header");
+const toggleBtn = document.querySelector(".header__actions-btn-toggle");
+const nav = document.querySelector(".header__nav");
+const navOverlay = document.querySelector(".overlay");
+const searchBtn = document.querySelector(".header__actions-btn-search");
+const searchOverlay = document.querySelector(".search-overlay");
+const searchCloseBtn = document.querySelector(".search-overlay__close");
+const heartBtns = document.querySelectorAll(".courses__card-floating-btn");
+const backTopBtn = document.querySelector(".back-top-btn");
+
+// HELPERS
+const toggleClass = (el) => el.classList.toggle("active");
+
+// HANDLERS
+const onWindowScroll = () => {
+  if (window.scrollY >= 100) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+    header.classList.add("header-animate");
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+    header.classList.remove("header-animate");
+  }
+};
+const onToggleBtnClick = () => {
+  toggleClass(nav);
+  toggleClass(navOverlay);
+};
+const onNavClick = (e) => {
+  if (e.target.tagName === "A" || e.target.className === "header__btn-close") {
+    if (nav.classList.contains("active")) {
+      toggleClass(nav);
+      toggleClass(navOverlay);
+    }
+  }
+};
+const onNavOverlayClick = () => {
+  if (navOverlay.classList.contains("active")) {
+    toggleClass(nav);
+    toggleClass(navOverlay);
+  }
+};
+
+// ADD EVENTS
+window.addEventListener("scroll", onWindowScroll);
+toggleBtn.addEventListener("click", onToggleBtnClick);
+nav.addEventListener("click", onNavClick);
+navOverlay.addEventListener("click", onNavOverlayClick);
+searchBtn.addEventListener("click", () =>
+  searchOverlay.classList.add("active")
+);
+searchCloseBtn.addEventListener("click", () => toggleClass(searchOverlay));
+heartBtns.forEach((btn) =>
+  btn.addEventListener("click", () => toggleClass(btn))
+);
+
+</script>
+</body>
+</html>

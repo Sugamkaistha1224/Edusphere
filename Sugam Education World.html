@@ -1,0 +1,2285 @@
+ <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        
+      /* General CSS */
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font: normal 16px sans-serif;
+        color: #555;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 80px;
+      }
+
+      a {
+        text-decoration: none;
+        opacity: 0.75;
+        color: #fff;
+      }
+
+      a:hover {
+        opacity: 1;
+      }
+
+      a.btn {
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        background-color: #3f51b5;
+        opacity: 1;
+      }
+
+      hr {
+        width: 250px;
+        height: 3px;
+        background-color: #3f51b5;
+        border: 0;
+        margin-bottom: 50px;
+      }
+
+      /* Navbar Styles */
+
+      div.topnav {
+        z-index: 100;
+        position: sticky;
+        top: 0;
+        background-image: url(https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=98c2d910abcc9bb04fcb180f6a45e407&dpr=2&auto=format&fit=crop&w=767&h=485&q=60&cs=tinysrgb);
+        padding: 10px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .topnav a {
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+      }
+
+      .topnav a.icon {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .heading {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .links {
+        display: flex;
+      }
+
+      ul.list {
+        list-style-type: none;
+      }
+    
+ 
+      .fade-in-enter-active {
+        animation: fadeIn 1.5s ease;
+      }
+
+      /* leave transitions */
+      .fade-in-leave-to {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+
+      .fade-in-leave-active {
+        transition: all 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* route transitions */
+      .route-enter-from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      .route-enter-active {
+        transition: all 0.3s ease-out;
+      }
+
+      .route-leave-to {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      .route-leave-active {
+        transition: all 0.3s ease-in;
+      }
+
+      /*Hero Section Styles*/
+
+      .hero {
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        min-height: 100vh;
+        color: #fff;
+      }
+
+      .hero .heroBackgroundImage {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: -1;
+        background-color: #80a3db;
+      }
+
+      .hero h1 {
+        font: bold 60px "Open Sans", sans-serif;
+        margin-bottom: 15px;
+      }
+
+      .hero h3 {
+        font: bold 28px "Open Sans", sans-serif;
+        margin-bottom: 40px;
+      }
+
+      .hero a.btn {
+        padding: 20px 46px;
+        cursor: pointer;
+      }
+
+      .hero-content-area {
+        margin-top: 100px;
+      }
+
+      /* Media Queries and Keyframes */
+
+      @media (max-width: 800px) {
+        section {
+          padding: 50px 20px;
+        }
+
+        .hero {
+          min-height: 600px;
+        }
+
+        .hero h1 {
+          font-size: 48px;
+        }
+
+        .hero h3 {
+          font-size: 24px;
+        }
+
+        .hero a.btn {
+          padding: 15px 40px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .topnav a.icon {
+          display: block;
+          margin-top: 10px;
+        }
+
+        div.links {
+          display: none;
+        }
+      }
+
+      @keyframes fadein {
+        100% {
+          opacity: 1;
+        }
+      }
+
+/*  Hero Transitions */
+
+      /* enter transitions */
+      .slide-fade-enter-active {
+        animation: slidefade 1.5s ease;
+      }
+
+      /* leave transitions */
+      .slide-fade-leave-to {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+
+      .slide-fade-leave-active {
+        transition: all 0.3s ease;
+      }
+
+      @keyframes slidefade {
+        0% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+
+        100% {
+          transform: translateX(0px);
+          opacity: 1;
+        }
+      }
+
+/*  Login/Register Styles */
+
+      /* Login Form container */
+
+      .login-container,
+      .register-container {
+        width: 450px;
+        height: 450px;
+        background-color: #fff;
+        margin: auto;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+        padding: 77px 55px 33px 55px;
+      }
+
+      h3.title {
+        text-transform: capitalize;
+        font: bold 32px "open Sans", sans-serif;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      /* Login Form Styles */
+
+      form {
+        display: grid;
+      }
+
+      form > input,
+      button {
+        margin: 0 0 20px 0;
+      }
+
+      input {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: hidden;
+        background-color: #fff;
+        height: 40px;
+        border-bottom: 2px solid #adadad;
+        font-size: large;
+      }
+
+      input:focus {
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(
+          90deg,
+          rgba(88, 185, 235, 1) 2%,
+          rgba(59, 108, 153, 1) 100%
+        );
+        border-image-slice: 1;
+        outline: none;
+      }
+
+      button {
+        font-size: 15px;
+        color: #fff;
+        height: 50px;
+        border-radius: 10px;
+        background: rgb(73, 172, 186);
+        background: linear-gradient(
+          90deg,
+          rgba(73, 172, 186, 1) 2%,
+          rgba(41, 92, 139, 1) 100%
+        );
+        border: 0;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      button.submit-button-disabled {
+        background: gray;
+      }
+
+      button.submit-button-disabled:hover {
+        cursor: not-allowed;
+      }
+
+      /* Media Queries and Keyframes */
+
+      @media (max-width: 500px) {
+        .topnav a.icon {
+          display: block;
+        }
+
+        div.links {
+          display: none;
+        }
+
+        div.flex-box {
+          display: contents;
+        }
+
+        html,
+        body {
+          overflow-x: clip;
+        }
+
+        div.login-container {
+          width: 240px;
+        }
+      }
+
+      @keyframes fadein {
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* About Us Styles */
+
+      /* About Us Information Styles */
+
+      .flex-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding-top: 40px;
+      }
+
+      .flex-img {
+        max-width: 500px;
+        max-height: 400px;
+        padding: 20px;
+      }
+
+      .flex-text {
+        padding: 20px;
+        max-width: 500px;
+      }
+
+      .flex-rev {
+        flex-direction: row-reverse;
+      }
+
+      h5 {
+        font-size: 1.2rem;
+        text-align:center
+      }
+
+      .about-us {
+        padding-bottom: 0;
+      }
+
+      section p {
+        max-width: 775;
+        line-height: 2;
+        padding: 0 20px;
+        margin-bottom: 30px;
+      }
+   
+      /* Reviews Styles  */
+
+      .reviews-container {
+        width: 80%;
+        height: 600px;
+        background-color: #fff;
+        margin: auto;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+        padding: 77px 55px 33px 55px;
+      }
+
+      /* Reviews Form Styles */
+
+      form {
+        display: grid;
+      }
+
+      form > input,
+      button {
+        margin: 0 0 20px 0;
+      }
+
+      input {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: hidden;
+        background-color: #fff;
+        height: 40px;
+        border-bottom: 2px solid #adadad;
+        font-size: large;
+      }
+
+      input:focus {
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(
+          90deg,
+          rgba(88, 185, 235, 1) 2%,
+          rgba(59, 108, 153, 1) 100%
+        );
+        border-image-slice: 1;
+        outline: none;
+      }
+
+      textarea.review {
+        background-color: #fff;
+        border-bottom: 2px solid #adadad;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+
+      textarea:focus {
+        box-shadow: 0 0 1px 1px rgb(73, 172, 186);
+        outline: none;
+        border-radius: 10px;
+      }
+
+      button {
+        font-size: 15px;
+        color: #fff;
+        height: 50px;
+        border-radius: 10px;
+        background: rgb(73, 172, 186);
+        background: linear-gradient(
+          90deg,
+          rgba(73, 172, 186, 1) 2%,
+          rgba(41, 92, 139, 1) 100%
+        );
+        border: 0;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      /* List of Reviews/Testimonials Styles */
+
+      #testimonials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0;
+      }
+
+      .testimonial-heading {
+        letter-spacing: 1px;
+        margin: 30px 0px;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .testimonial-heading span {
+        font-size: 1.3rem;
+        color: #252525;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .testimonial-box-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .testimonial-box {
+        width: 100%;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        margin: 15px;
+        cursor: pointer;
+      }
+
+      .profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+      }
+
+      .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .profile {
+        padding: 20px 0px 0px 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .name-user {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name-user strong {
+        color: #3d3d3d;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+      }
+
+      .name-user span {
+        color: #979797;
+        font-size: 0.8rem;
+      }
+
+      .reviews {
+        color: #f9d71c;
+      }
+
+      .box-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .client-comment p {
+        font-size: 0.9rem;
+        color: #4b4b4b;
+      }
+
+      .testimonial-box:hover {
+        transform: translateY(-10px);
+        transition: all ease 0.3s;
+      }
+
+      /* Media Queries and Keyframes */
+
+      @media (max-width: 800px) {
+        section {
+          padding: 50px 20px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .topnav a.icon {
+          display: block;
+        }
+
+        div.links {
+          display: none;
+        }
+
+        div.flex-box {
+          display: contents;
+        }
+
+        html,
+        body {
+          overflow-x: clip;
+        }
+      }
+
+      @media (max-width: 376px) {
+        .box-top {
+          flex-wrap: wrap;
+          margin-bottom: 10px;
+        }
+
+        .reviews {
+          margin-top: 10px;
+        }
+
+        form > input[type="text"] {
+          width: 135px;
+        }
+
+        form > input[type="password"] {
+          width: 135px;
+        }
+
+        form > input[type="email"] {
+          width: 135px;
+        }
+
+        form > textarea {
+          width: 135px;
+        }
+
+        form > button {
+          width: 135 px;
+        }
+
+        .reviews-container {
+          width: 240px;
+          height: 700px;
+        }
+      }
+
+      @keyframes fadein {
+        100% {
+          opacity: 1;
+        }
+      }
+    
+/*     Reviews Transitions  */
+   
+      /* list transitions */
+      .list-enter-from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+
+      .list-enter-active {
+        transition: all 0.4s ease;
+      }
+
+      .list-leave-to {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+
+      .list-leave-active {
+        transition: all 0.4s ease;
+      }
+  
+       /*   Packages Styles     */
+
+      /* Packages Grid Styles */
+
+      .packages .grid li {
+        padding: 50px;
+        flex-basis: 50%;
+        text-align: center;
+      }
+
+      .packages .grid li i {
+        color: #8c9eff;
+      }
+
+      .packages .grid li h4 {
+        font-size: 30px;
+        margin: 25px 0;
+      }
+
+      /* Packages card and pack-container */
+
+      .pack-container {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .pack-container .card {
+        position: relative;
+        width: 320px;
+        height: 450px;
+        background: url("https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=98c2d910abcc9bb04fcb180f6a45e407&dpr=2&auto=format&fit=crop&w=767&h=485&q=60&cs=tinysrgb");
+        border-radius: 20px;
+        overflow: hidden;
+        margin: auto;
+        margin-bottom: 10px;
+      }
+
+      .pack-container .card .contentBx {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        transition: 1s;
+        z-index: 10;
+      }
+
+      .pack-container .card:hover .contentBx {
+        height: 210px;
+      }
+
+      .pack-container .card .contentBx h2 {
+        position: relative;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: #fff;
+        margin: 0;
+      }
+
+      .pack-container .card .contentBx .size,
+      .pack-container .card .contentBx .color {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 20px;
+        transition: 0.5s;
+        opacity: 0;
+        visibility: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .pack-container .card:hover .contentBx .size {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.5s;
+      }
+
+      .pack-container .card:hover .contentBx .color {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.6s;
+      }
+
+      .pack-container .card .contentBx .size h3,
+      .pack-container .card .contentBx .color h3 {
+        color: #fff;
+        font-weight: 300;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-right: 10px;
+      }
+
+      .pack-container .card .contentBx .size span {
+        width: 26px;
+        height: 26px;
+        text-align: center;
+        line-height: 26px;
+        font-size: 14px;
+        display: inline-block;
+        color: #111;
+        background: #fff;
+        margin: 0 5px;
+        transition: 0.5s;
+        color: #111;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .pack-container .card .contentBx .color span {
+        width: 20px;
+        height: 20px;
+        padding-right: 35px;
+        color: #fff;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .pack-container .card .contentBx a {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #fff;
+        border-radius: 4px;
+        margin-top: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        color: #111;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 0.5s;
+        margin-top: 0;
+      }
+
+      div.contentBx > div {
+        margin-top: 10px;
+      }
+
+      #buy {
+        margin-top: 10px;
+      }
+
+      .pack-container .card:hover .contentBx a {
+        opacity: 1;
+        transform: translateY(0px);
+        transition-delay: 0.75s;
+      }
+
+      /* Media Queries and Keyframes */
+
+      @media (max-width: 800px) {
+        section {
+          padding: 50px 20px;
+        }
+
+        header {
+          padding: 20px 50px;
+          flex-direction: column;
+        }
+
+        header h2 {
+          margin-bottom: 12px;
+        }
+
+        .packages .grid li {
+          flex-basis: 100%;
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .topnav a.icon {
+          display: block;
+        }
+
+        div.links {
+          display: none;
+        }
+
+        div.flex-box {
+          display: contents;
+        }
+
+        html,
+        body {
+          overflow-x: clip;
+        }
+      }
+
+      @keyframes fadein {
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Carousel */
+
+      .numbertext > img {
+        vertical-align: middle;
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        box-shadow: rgb(99 99 99 / 20%) 1px 0px 7px 9px;
+      }
+
+      /* Next & previous buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: #717171;
+      }
+
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+        .prev,
+        .next {
+          font-size: 11px;
+        }
+      }
+
+      /*  Locations Styles  */
+
+      /* Locations CSS */
+
+      #locations-marker > li {
+        margin-bottom: 20px;
+        position: relative;
+        left: -13px;
+      }
+
+      #locations-marker > li:first-child {
+        list-style-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='19.9' viewBox='-2.5 -2.4 20 19.9'%3E%3Ccircle fill='%2341c4ab' cx='7.5' cy='5.5' r='1.9'/%3E%3Cpath fill='%2341c4ab' d='M7.5-2.4c-5.6 0-10 4.4-10 9.9 0 5.6 4.4 10 10 10s10-4.4 10-10C17.4 2 13-2.4 7.5-2.4zm0 15.5S4 8.7 4 5.4c0-1.9 1.6-3.5 3.5-3.5 2 0 3.5 1.6 3.5 3.5 0 3.4-3.5 7.7-3.5 7.7z'/%3E%3C/svg%3E");
+      }
+
+      #locations-marker > li:not(:last-child)::after {
+        position: relative;
+        content: "";
+        border-left: 1px dashed #c7d0d9;
+        width: 0;
+        height: 27px;
+        left: -15px;
+        top: -15;
+        top: 19px;
+      }
+
+      #locations-marker > li:not(:first-child) {
+        list-style-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0.5 0.43 20 20'%3E%3Cpath fill='%230a7bbd' d='M10.5 20.43c-5.51 0-10-4.49-10-10s4.49-10 10-10 10 4.49 10 10-4.49 10-10 10zm0-15c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z'/%3E%3Cpath fill='%23fff' d='M10.5 5.43c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z'/%3E%3C/svg%3E");
+      }
+
+      #locations-container {
+        display: flex;
+      }
+
+      #locations-text > li:first-child {
+        margin-top: 16px;
+        list-style: none;
+      }
+
+      #locations-text > li {
+        margin-top: 25px;
+        list-style: none;
+      }
+
+      /* Package Details Styles  */
+
+      /* Info wrapper */
+
+      #package-info-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 80%;
+        margin-top: 50px;
+      }
+
+      #package-info-wrapper > :first-child {
+        padding-right: 75px;
+      }
+
+      #package-info-wrapper > :last-child {
+        padding-left: 75px;
+      }
+
+      .all-package-info {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .all-package-info > * {
+        padding: 5px 20px 20px 0;
+      }
+
+      .package-price {
+        border-radius: 5px;
+      }
+
+      .package-itenary {
+        /* margin: 25px 25px 10px 25px */
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      .package-itenary > p {
+        font-size: 16px;
+        line-height: 1.25;
+        margin: auto;
+        margin-bottom: 25px;
+      }
+
+      .package-details-button {
+        align-items: center;
+        background: #ffffff;
+
+        color: black;
+        cursor: pointer;
+        transition: color 1s ease;
+        transition: background 1s ease;
+
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(
+          90deg,
+          rgba(88, 185, 235, 1) 2%,
+          rgba(59, 108, 153, 1) 100%
+        );
+        border-image-slice: 1;
+        outline: none;
+
+        border-radius: 0.25rem;
+        box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
+        box-sizing: border-box;
+        display: inline-flex;
+        font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
+          Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 3rem;
+        padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+        position: relative;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: auto;
+      }
+
+      .package-details-button:hover {
+        background: #3d91b8;
+        color: #ffffff;
+        transform: translateY(-1px);
+      }
+
+      .package-details-button:focus {
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-image: linear-gradient(
+          90deg,
+          rgba(88, 185, 235, 1) 2%,
+          rgba(59, 108, 153, 1) 100%
+        );
+        border-image-slice: 1;
+        outline: none;
+      }
+
+      .package-details-button:active {
+        background-color: #f0f0f1;
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        color: rgba(0, 0, 0, 0.65);
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        #package-info-wrapper {
+          flex-wrap: wrap;
+        }
+
+        #package-info-wrapper > :last-child {
+          padding-left: 0;
+        }
+
+        #package-info-wrapper > :first-child {
+          padding-right: 0;
+        }
+
+        .all-package-info {
+          width: 500px;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
+        p.package-duration {
+          display: flex;
+          justify-content: center;
+        }
+
+        .package-details-button:hover {
+          border-top: 2px solid transparent;
+          border-left: 2px solid transparent;
+          border-right: 2px solid transparent;
+          border-image: linear-gradient(
+            90deg,
+            rgba(88, 185, 235, 1) 2%,
+            rgba(59, 108, 153, 1) 100%
+          );
+          border-image-slice: 1;
+          outline: none;
+        }
+
+        h1.destination-name {
+          width: fit-content;
+          margin: auto;
+          margin-top: 20px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        #package-info-wrapper {
+          flex-wrap: wrap;
+        }
+
+        #package-info-wrapper > :last-child {
+          padding-left: 0;
+        }
+
+        #package-info-wrapper > :first-child {
+          padding-right: 0;
+        }
+
+        .all-package-info {
+          width: unset;
+        }
+
+        p.package-duration {
+          display: flex;
+          justify-content: center;
+        }
+
+        h1.destination-name {
+          width: fit-content;
+          margin: auto;
+          margin-top: 20px;
+        }
+      }
+
+
+      /*  Login Packages  */
+
+      .booking-list {
+        padding: 20px;
+        margin: auto;
+        margin-top: 20px;
+        width: 50%;
+      }
+
+      .booking {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        border: 1px solid;
+        border-radius: 3px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+
+      .booking > span {
+        padding-top: 30px;
+        padding-bottom: 20px;
+      }
+
+      .booking > button {
+        margin-top: 15px;
+      }
+
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.0.1/vue-router.js"></script>
+    <script src="https://unpkg.com/vuex@2.5.0/dist/vuex.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <nav-bar
+        brand="KAISTHA's GROUP"
+        :links="[{ name: 'Home', href: '/' }, { name: 'About Us', href: '/about' }, { name: 'Projects', href: '/packages' }, { name: 'Log In', href: '/login' }, { name: 'Register', href: '/register'}]"
+      ></nav-bar>
+      <div>
+        <transition name="route">
+          <router-view />
+        </transition>
+      </div>
+    </div>
+    <script type="text/javascript">
+      
+  // NavBar component
+  const navbar = Vue.component("nav-bar", {
+    template: `
+      <Transition name='fade-in'>
+      <div v-if='show' :class="navbar_classes[0]">
+      <!-- Heading to separate the items with space between  -->
+      <div :class="navbar_classes[1]">
+        <router-link to="/" >{{ brand }}</router-link>
+        <!-- Links for the large screens -->
+        <div :class="navbar_classes[2]">
+          <router-link v-for="link in links" :key="link.name" :to="link.href">{{ link.name }}</router-link>
+        </div>
+      </div>
+     
+      <!-- Links for mobile screens -->
+      <Transition name="slide-fade">
+        <div v-if="show1" id="hiddenLinks" v-bind:class="{ hidden: showMobileMenu }">
+          <transition-group tag="ul" :class="navbar_classes[3]">
+            <li v-for="link in links" :key="link.name" :class="navbar_classes[4]">
+              <router-link :to="link.href">{{ link.name }}</router-link>
+            </li>
+          </transition-group>
+        </div>
+      </Transition>
+      <!-- Hamburger icon -->
+      <a href="javascript:void(0);" :class="navbar_classes[5]" @click="toggleMobileMenu">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    </Transition>
+        `,
+    props: {
+      brand: {
+        type: String,
+        required: true,
+      },
+      links: {
+        type: Array,
+        required: false,
+      },
+    },
+    data() {
+      return {
+        showMobileMenu: false,
+        show: false,
+        show1: false,
+        navbar_classes: [
+          "topnav",
+          "heading",
+          "links",
+          "list",
+          "list-item",
+          "icon",
+        ],
+      };
+    },
+    computed: {
+      isMobile: function () {
+        return window.innerWidth < 768;
+      },
+    },
+    watch: {
+      showMobileMenu: function (newVal) {
+        this.show1 = newVal;
+      },
+    },
+    methods: {
+      toggleMobileMenu() {
+        this.show1 = !this.show1;
+      },
+    },
+    mounted() {
+      this.show = true;
+    },
+  });
+
+  // Hero component
+  const home = Vue.component("home", {
+    template: `
+
+              <section :class="home_classes[0]">
+                  <div :class="home_classes[1]" :style="backgroundImg"></div>
+                  <Transition name="slide-fade">
+                      <div v-if="show">
+                      <div :class="home_classes[2]">
+                        <h1>{{ title }}</h1>
+                        <h3>{{ tagline }}</h3>
+                        <router-link :to="packageLink" :class="home_classes[3]">Projects</router-link>
+                    </div>
+                      </div>
+                  </Transition>
+              </section>
+
+
+              `,
+    data() {
+      return {
+        heroBackgroundStyle: {
+          color: "blue",
+          fontSize: "13px",
+        },
+        show: false,
+        home_classes: [
+          "hero",
+          "heroBackgroundImage",
+          "hero-content-area",
+          "btn",
+        ],
+      };
+    },
+    computed: {
+      backgroundImg: function () {
+        return { "background-image": "url(" + this.heroBackgroundImage + ")" };
+      },
+      title: function () {
+        return this.$store.state.title;
+      },
+    },
+    props: {
+      tagline: {
+        type: String,
+        required: false,
+        default: "Explore the wonders of our projects!",
+      },
+      packageLink: {
+        type: String,
+        required: false,
+        default: "/packages",
+      },
+      heroBackgroundImage: {
+        type: String,
+        required: false,
+        default:
+          "https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=98c2d910abcc9bb04fcb180f6a45e407&dpr=2&auto=format&fit=crop&w=767&h=485&q=60&cs=tinysrgb",
+      },
+    },
+    mounted() {
+      this.show = true;
+    },
+  });
+
+  // LoginForm component
+  const login = Vue.component("login-form", {
+    template: `
+    <section class="login-form-section">
+    <Transition name="slide-fade">
+      <div v-if="show" class="login-container">
+        <h3 class="title">{{ greeting }}</h3>
+        <!-- Login Form -->
+        <form action="" @submit.prevent="login">
+          <input
+            type="text"
+            placeholder="Username"
+            v-model="username"
+            name=""
+            id=""
+          />
+          <input type="password" placeholder="Password" v-model="password" />
+          <button :style="{background:validity}" :class="submitButtonClass">Login</button>
+        </form>
+        <!-- Error message -->
+        <div v-if="hasError" class="error-message">{{ errorMessage }}</div>
+      </div>
+    </Transition>
+    </section>
+
+        `,
+    props: {
+      greeting: {
+        type: String,
+        required: false,
+        default: "Welcome",
+      },
+    },
+    computed: {
+      isValidForm: function () {
+        return this.username && this.password;
+      },
+      submitButtonClass: function () {
+        return this.isValidForm ? "submit-button" : "submit-button-disabled";
+      },
+      validity: function () {
+        return this.isValidForm ? "" : "gray";
+      },
+      loginSucess:function(){
+        return this.$store.state.logSucess
+      }
+    },
+    watch: {
+      username: function () {
+        this.isForm = this.username && this.password;
+      },
+      password: function () {
+        this.isForm = this.username && this.password;
+      },
+      loginSucess: function () {
+        console.log("Login");
+        if (this.$store.state.logSucess) {
+          console.log('suc')
+          window.location.href += "/sucess";
+        }
+      },
+    },
+    data() {
+      return {
+        username: "",
+        password: "",
+        hasError: false,
+        errorMessage: "",
+        show: false,
+        isForm: false,
+      };
+    },
+    methods: {
+      login() {
+        // Validate the form
+        if (this.isValidForm) {
+          this.hasError = true;
+          this.errorMessage = "Error: Please enter the correct details";
+          for (let i = 0; i < this.$store.state.users.length; i++) {
+            if (this.$store.state.users[i].username == this.username) {
+              if (this.$store.state.users[i].password == this.password) {
+                console.log("aaa");
+                this.$store.state.logSucess = true;
+              }
+            }
+          }
+          return;
+        }
+        // Send a request to the server to log the user in
+        // Assuming the server sends a response with a success or error message
+      },
+    },
+    mounted() {
+      this.show = true;
+      if (this.$store.state.logSucess) {
+          window.location.href += "/sucess";
+        }
+    },
+  });
+
+  // RegistrationForm component
+  const register = Vue.component("register-form", {
+    template: `
+    <section class="register-form-section">
+    <Transition name="slide-fade">
+      <div v-if="show" class="register-container">
+        <h3 class="title">Register</h3>
+        <!-- Register Form -->
+        <form action="" @submit.prevent="register">
+          <input
+            type="text"
+            placeholder="Username"
+            v-model="username"
+            name=""
+            id=""
+          />
+          <input type="password" placeholder="Password" v-model="password" />
+          <input type="password" placeholder="Confirm Password" v-model="confirmPassword" />
+          <button :style="{background:validity}" :class="submitButtonClass">Register</button>
+        </form>
+        <!-- Error message -->
+        <div v-if="hasError" class="error-message">{{ errorMessage }}</div>
+      </div>
+    </Transition>
+    </section>
+
+        `,
+    computed: {
+      isValidForm: function () {
+        return this.username && this.password;
+      },
+      isPassValid: function () {
+        return (
+          this.password == this.confirmPassword &&
+          this.password &&
+          this.confirmPassword
+        );
+      },
+      submitButtonClass: function () {
+        return this.isValidForm && this.isPassValid
+          ? "submit-button"
+          : "submit-button-disabled";
+      },
+      validity: function () {
+        return this.isValidForm && this.isPassValid ? "" : "gray";
+      },
+    },
+    watch: {
+      username: function () {
+        this.isForm = this.username && this.password;
+      },
+      password: function () {
+        this.isForm = this.username && this.password;
+      },
+      registered: function () {
+        if (this.registered) {
+          window.location.href = window.location.href.replace(
+            "register",
+            "login"
+          );
+        }
+      },
+    },
+    data() {
+      return {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        hasError: false,
+        errorMessage: "",
+        show: false,
+        isForm: false,
+        registered: false,
+      };
+    },
+    methods: {
+      register() {
+        // Validate the form
+        if (this.isPassValid && this.isValidForm) {
+          this.$store.state.users.push({
+            username: this.username,
+            password: this.password,
+          });
+          this.registered = true;
+          return;
+        }
+
+        console.log(this.$store.state.users);
+        this.hasError = true;
+        this.errorMessage = "Please enter your appropriate details";
+        return;
+        // Send a request to the server to log the user in
+        // Assuming the server sends a response with a success or error message
+        // if (response.success) {
+        // // Redirect the user
+        // window.location.href = '/';
+        // } else {
+        // this.hasError = true;
+        // this.errorMessage = response.error;
+        // }
+      },
+    },
+    mounted() {
+      this.show = true;
+    },
+  });
+
+  //AboutUs component
+  const about = Vue.component("about", {
+    template: `
+      <Transition name="slide-fade">
+        <section v-if='show' class="about-us">
+          <h3 class="title">About Us</h3>
+          <hr />
+          <!-- Information About Us -->
+          <div :class="aboutObj(index)" ref="info_block" v-for="(info, index) in infos" :key="info.title">
+            <div>
+              <img :src="info.image" alt="" class="flex-img" />
+            </div>
+            <div class="flex-text">
+              <h5>{{ info.title }}</h5>
+              <p>{{ info.description }}</p>
+            </div>
+          </div>
+        </section>
+        </Transition>
+      `,
+    data() {
+      return {
+        show: false,
+      };
+    },
+    props: {
+      infos: {
+        type: Array,
+        required: true,
+      },
+    },
+    methods: {
+      aboutObj(index) {
+        return {
+          "flex-box": true,
+          "flex-rev": index % 2 == 1,
+        };
+      },
+    },
+    mounted() {
+      // this.$refs.info_block[0].style.color = 'white'
+      this.show = true;
+    },
+  });
+
+  //Reviews component
+  const reviews = Vue.component("reviews", {
+    template: `
+        <section id="testimonials">
+        <!-- Review Form -->
+        <div class="reviews-container">
+          <h3 class="title">Leave Us A Review!</h3>
+          <form @submit.prevent="submitReview">
+            <input id="review-input-name" type="text" placeholder="Name" v-model="name" />
+            <input id="review-input-email" type="email" placeholder="Email" v-model="email" />
+            <textarea id="review-textarea"
+              class="review"
+              :style="{font: 'normal large sans-serif'}"
+              v-model="review"
+              placeholder="Review..."
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button>Submit</button>
+          </form>
+        </div>
+        <!--heading--->
+        <div class="testimonial-heading">
+          <h3 class="title">Reviews</h3>
+        </div>
+        <!--List of Reviews------>
+    <Transition-group :style="{width: transition_review}" tag="div" name="list">
+      <div class="testimonial-box-container" v-for="review in reviews" :key="review.id">
+        <div class="testimonial-box">
+          <!-- top -->
+          <div class="box-top">
+            <!--profile----->
+            <div class="profile">
+              <!--img---->
+              <div class="profile-img">
+                <img
+                  src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_user2-512.png"
+                />
+              </div>
+              <!--name-and-username-->
+              <div class="name-user">
+                <strong>{{ review.name }}</strong>
+                <span>{{ review.email }}</span>
+              </div>
+            </div>
+          </div>
+          <!-- Review comment -->
+          <div class="client-comment">
+            <p>{{ review.comment }}</p>
+          </div>
+        </div>
+      </div>
+    </Transition-group>
+      </section>
+        `,
+    data() {
+      return {
+        name: "",
+        email: "",
+        review: "",
+        reviews: [
+          {
+            name: "Sugam Kaistha",
+            email: "sugamkaistha95@gmail.com",
+            comment: "W site",
+          },
+        ],
+        id: -1,
+        transition_review: "inherit",
+      };
+    },
+    methods: {
+      submitReview() {
+        const review_object = {
+          name: this.name,
+          email: this.email,
+          comment: this.review,
+          id: this.id + 1,
+        };
+        this.reviews.push(review_object)
+      },
+    },
+    mounted() {},
+  });
+
+  const about_us = Vue.component("about-us", {
+    template: `
+      <div>
+        <about :infos="[{description:'As a bachelor of computer science students, I am Sugam kaistha, excited to introduce our latest project, KaisthaGroup Projection. This web application is designed for tourists who are looking to explore advance projects of us in an organized and convenient way.',title:'Introduction',image:'https://sugamkaistha1.carrd.co/assets/images/image03.jpg?v=3cb4663c'},{description:'The goal of Travel Space is to provide a one-stop-shop for all of your travel needs. From finding the perfect package to book, to providing detailed information about each destination, we strive to make the planning process as seamless as possible. With user-friendly navigation and easy-to-use booking and exploring features, Travel Space is the perfect tool for anyone looking to explore the wonders and darkness of Space.',title:'My Goals and Visions',image:'https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=98c2d910abcc9bb04fcb180f6a45e407&dpr=2&auto=format&fit=crop&w=767&h=485&q=60&cs=tinysrgb'}]"></about>
+        <reviews></reviews>
+      </div>
+
+      `,
+  });
+  //Packages component
+  const packages = Vue.component("packages", {
+    template: `
+        <section class="packages">
+      <Transition name="slide-fade">
+        <h3 v-if='show' class="title">My Projects</h3>
+        <p>We offer a variety of usefull, inovative and trending projects. Wheter you've Go and explore free and we've got the perfect lifestyle for you.</p>
+        <hr>
+      </Transition>
+
+        <!-- Package Cards Container -->
+
+        <Transition name="slide-fade">
+    <div v-if="show" class="pack-container">
+      <!-- Package Card -->
+      <div  class="card" v-for="package in packages" :key="package.id">
+
+        <div class="contentBx">
+          <h2>{{ package.name }}</h2>
+          <div class="size">
+          
+          </div>
+          <div class="color">
+            
+          </div>
+            <router-link :to="package_link(package.id)" id="buy" @click.prevent="purchasePackage(package)">Lets Explore</router-link>
+        </div>
+      </div>
+    </div>
+  </Transition>
+      </section>
+        `,
+    data() {
+      return {
+        show: false,
+      };
+    },
+    methods: {
+      purchasePackage(package) {
+        // Send an API request to purchase the selected package
+        console.log(`Purchasing package: ${package.name}`);
+      },
+      package_link: function (id) {
+        return "packages/" + id;
+      },
+    },
+    computed: {
+      packages: function () {
+        return this.$store.state.packages;
+      },
+    },
+    mounted() {
+      this.show = true;
+    },
+  });
+
+  //Carousel Component
+  const carousel = Vue.component("carousel", {
+    template: `
+      <div id="carousel-main">
+        <div class="slideshow-container">
+        <div :class="carousel_classes" v-for="(slide, index) in slides" :key="index">
+          <div v-if="show(index)">
+            <div class="numbertext">{{ index + 1 }} / {{ slides.length }}</div>
+            <img :src="slide.src" :style="{width: carousel_img_width + '%'}">
+          </div>
+        </div>
+
+        <a class="prev" @click="prevSlide">❮</a>
+        <a class="next" @click="nextSlide">❯</a>
+      </div>
+
+      <div :style="{'text-align':carousel_dot_allignment}">
+        <span class="dot" v-for="(slide, index) in slides" :key="index" @click="currentSlide(index)" :class="{ 'active': currentIndex === index }"></span>
+      </div>
+      </div>
+      `,
+    props: {
+      slides: {
+        type: Array,
+        required: true,
+      },
+    },
+    data() {
+      return {
+        currentIndex: 0,
+        carousel_classes: ["mySlides", "fade"],
+        carousel_img_width: 60,
+        carousel_dot_allignment: "center",
+      };
+    },
+    methods: {
+      show(index) {
+        if (this.currentIndex == index) {
+          return true;
+        }
+        return false;
+      },
+      prevSlide() {
+        console.log(this.currentIndex);
+        this.currentIndex--;
+        if (this.currentIndex < 0) {
+          this.currentIndex = this.slides.length - 1;
+        }
+      },
+      nextSlide() {
+        console.log("next");
+        this.currentIndex++;
+        if (this.currentIndex >= this.slides.length) {
+          this.currentIndex = 0;
+        }
+      },
+      currentSlide(index) {
+        console.log("cur");
+        this.currentIndex = index;
+      },
+    },
+  });
+
+  //Locations Component
+
+  const locations = Vue.component("locations", {
+    template: `
+      <div id="locations-container">
+      <ol id="locations-marker">
+        <li v-for="i in stops" ></li>
+      </ol>
+      <div id="locations-text">
+        <li v-for="stop in stops">{{stop}}</li>
+      </div>
+    </div>
+      `,
+    props: {
+      stops: {
+        type: Array,
+        required: true,
+      },
+    },
+  });
+
+  //Package Details Component
+
+  const details = Vue.component("package-detail", {
+    template: `
+      <div>
+        <Transition name="slide-fade">
+          <div v-if="show" id="package-info-wrapper">
+          <carousel :slides="getImages"></carousel>
+            <div id="package-main">
+              <h1 class="destination-name">{{ package.name }}</h1>
+              <form @submit.prevent="handleSubmit">
+                <input required type="date" v-model="selectedDate">
+                <div class="all-package-info">
+                  <div v-for="package_detail in package.details" class="package-info">
+                    <p class="package-duration">{{ package_detail.days }} days</p>
+                   
+                  </div>
+                </div>
+                <button type="submit">Projection Cart</button>
+              </form>
+            </div>
+          </div>
+        </Transition>
+          <div class="package-itenary">
+            <h2>Itenary</h2>
+            <p>{{ getItenary }}</p>
+          <locations :stops="getLocations"></locations>
+            <iframe :src="getIframeSrc" frameborder="0" width="1250" height="750" style="border:10;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+    `,
+    data() {
+      return {
+        selectedDate: null,
+        price: '',
+        days: null,
+        show: false,
+        details_button_classes: ["package-price", "package-details-button"],
+      };
+    },
+    methods: {
+      formValidator(){
+        
+        return true
+      },
+      handleSubmit(event) {
+        if(this.formValidator()){
+          var uid = this.$store.state.counter
+        var new_entry = {id:uid,name:this.package.name, date:this.selectedDate, price:this.price, days:this.days}
+        this.$store.state.user_packages.push(new_entry)
+        this.$store.state.counter ++
+        window.location.href = window.location.href.split('/').slice(0,-2).join('/')
+        }
+        // Add logic to handle form submission
+      },
+      selectedPrice(price, days) {
+        this.price = '$' + price;
+        this.days = days
+      },
+    },
+    computed: {
+      package: function () {
+        return this.$store.state.packages[this.$route.params.id];
+      },
+      getLocations: function () {
+        return this.$store.state.packages[this.$route.params.id].locations;
+      },
+      getItenary: function () {
+        return this.$store.state.packages[this.$route.params.id].itenary;
+      },
+      getImages: function () {
+        return this.$store.state.packages[this.$route.params.id].images;
+      },
+      getIframeSrc: function () {
+        return this.$store.state.packages[this.$route.params.id].iframeSrc;
+      },
+    },
+    mounted() {
+      this.show = true;
+    },
+  });
+
+  // Login packages
+  const login_packages = Vue.component("login-package", {
+    template: `
+    <div>
+      <h3 class="title">Your Projection</h3>
+    <hr/>
+    <div class="booking-list" v-for="booking in bookings" :key="booking.id">
+        <div class="booking" >
+            <span>Package: {{getTitle(booking.id)}}</span>
+            <span>Date: {{getDate(booking.id)}} </span>
+            <span>Price: {{getPrice(booking.id)}} </span>
+            <span>Days: {{getDays(booking.id)}} days </span>
+            <button class="remove" @click="removed(booking.id)">Cancel Projection</button>
+        </div>
+    </div>
+    <div style="width:fit-content; margin:auto">
+      <button style='width:300px' class="package-details-button" @click="logOff()">Log Off</button>  
+    </div>
+    
+      </div>
+    `,
+    data() {
+      return {
+        
+      };
+    },
+    computed:{
+      bookings:function(){
+        return this.$store.state.user_packages
+      }
+    },
+    methods: {
+      getTitle(id){
+        console.log(this.$store.state.user_packages.find(user => user.id === id).name)
+        return this.$store.state.user_packages.find(user => user.id === id).name
+        // return this.$store.state.user_packages.find(user => user.id === id)
+
+      },
+      getDate(id){
+        return this.$store.state.user_packages.find(user => user.id === id).date
+      },
+      getPrice(id){
+        return this.$store.state.user_packages.find(user => user.id === id).price
+      },
+      getDays(id){
+        return this.$store.state.user_packages.find(user => user.id === id).days
+      },
+      removed(id){
+        const index = this.$store.state.user_packages.findIndex(p => p.id === id);
+        this.$store.state.user_packages.splice(index, 1);
+        // this.$store.state.user_packages = this.$store.state.user_packages.filter(p => p.id !== id)
+      },
+      logOff(){
+        this.$store.state.logSucess = false
+        window.location.href = window.location.href.replace(
+            "sucess",
+            ""
+          );
+      }
+    }
+  });
+
+  //Routes and Router
+
+  const routes = [
+    { path: "/", component: home },
+    { path: "/about", component: about_us },
+    { path: "/packages", component: packages },
+    { path: "/packages/:id", component: details },
+    { path: "/login", component: login },
+    { path: "/login/sucess", component: login_packages },
+    { path: "/register", component: register },
+  ];
+
+  const router = new VueRouter({
+    routes,
+  });
+
+  Vue.use(VueRouter);
+
+  // Global Store
+
+  const store = new Vuex.Store({
+    state: {
+      users: [
+        {
+          username: "Sugam Kaistha",
+          password: "123456",
+        },
+      ],
+      title: "Kaistha's Groups",
+      counter:0,
+      logSucess:false,
+      user_packages: [],
+      packages: [
+        {
+          id: 0,
+          name: "Web OS",
+          details: [
+            { id: 1, days: 7,  },
+            { id: 2, days: 10, },
+            { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "At the core lies our revolutionary framework,ensuring adaptability across all application architectures of operating system.",
+          locations: [
+            "1: WEB OS - Use-Ground",
+
+          ],
+          iframeSrc:
+            "https://sugamweb.w3spaces.com/webs.html",
+          images: [
+            {
+              src: "https://sugamkaistha24.carrd.co/assets/images/image27.png?v=860c70c7",
+              caption: "WEB OS",
+
+            },
+          ],
+        },
+        {
+          id: 1,
+          name: "Astroguide",
+          details: [
+            { id: 1, days: 7,  },
+            { id: 2, days: 10, },
+          { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Revolutionize your digital experience with our Virtual Space , seamlessly integrating productivity, entertainment, and connectivity for unparalleled versatility and efficiency",
+          locations: [
+            "Virtual Space Zone - Astroguide",
+          ],
+          iframeSrc:
+            "https://astroguide.w3spaces.com/welcometoaustoguide.html",
+          images: [
+            {
+              src: "https://imagedatabasesc.carrd.co/assets/images/image04.png?v=b46056e6",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "WebApp Zone",
+          details: [
+            { id: 1, days: 7,  },
+            { id: 2, days: 10, },
+          { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Revolutionize your digital experience with our Web OS app, seamlessly integrating productivity, entertainment, and connectivity for unparalleled versatility and efficiency",
+          locations: [
+            "WEBApp Zone",
+          ],
+          iframeSrc:
+            "https://sugamwork.w3spaces.com/sugamweb3.html",
+          images: [
+            {
+              src: "https://sugamkaistha24.carrd.co/assets/images/image26.png?v=0dd1ba35",
+            },
+          ],
+        },
+                {
+          id: 3,
+          name: "Science HUB",
+          details: [
+             { id: 1, days: 7,  },
+           { id: 2, days: 10, },
+            { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Welcome to our Science Hub, where curiosity meets discovery! Explore breakthroughs, engage in discussions, and ignite your passion for science",
+          locations: [
+            "Science HUB",
+          ],
+          iframeSrc:
+            "https://kaisthagroup.w3spaces.com/sugamsciencehub.html",
+          images: [
+            {
+              src: "https://sugamkaistha24.carrd.co/assets/images/image01.jpg?v=73da05605",
+            },
+          ],
+        },     {
+          id: 4,
+          name: "Expense Tracker",
+          details: [
+             { id: 1, days: 7,  },
+           { id: 2, days: 10, },
+            { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Welcome to our Expense Tracking page, where you can see yours expemse! Explore more featurewe, engage in discussions, and ignite your passion for your money",
+          locations: [
+            "Science HUB",
+          ],
+          iframeSrc:
+            "https://sugamwork.w3spaces.com/1.html",
+          images: [
+            {
+              src: "https://imagedatabasesc.carrd.co/assets/images/image03.png?v=0dc6a869",
+            },
+          ],
+        },
+
+                 {
+          id: 5,
+          name: "Sugam Game Hub",
+          details: [
+             { id: 1, days: 7,  },
+           { id: 2, days: 10, },
+            { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Step into my virtual games, with high graphic, 2d/3d, shaping new realities beyond limits.",
+          locations: [
+            "Sugam Virtual Space",
+          ],
+          iframeSrc:
+            "https://kaisthagroup.w3spaces.com/sugamgamehub.html",
+          images: [
+            {
+              src: "https://imgs.search.brave.com/k4xNdW-hOqvopSJGsUl_mhZLzBotbUSDAbYYOQOZfdE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9kaWZt/YXJrLmNvbS9pbWFn/ZXMvdXNlci1pbWFn/ZS8yLzcvNzI1NS83/MjU1X21haW5fMS5q/cGc",
+            },
+          ],
+        },
+                 {
+          id: 6,
+          name: "Virtual Web Space",
+          details: [
+             { id: 1, days: 7,  },
+           { id: 2, days: 10, },
+            { id: 3, days: 14, },
+            { id: 4, days: 30, },
+          ],
+          itenary:
+            "Step into my virtual realm, a boundless cosmos of immersive experiences where imagination meets technology, shaping new realities beyond limits.",
+          locations: [
+            "Sugam Virtual Space",
+          ],
+          iframeSrc:
+            "https://sciencehub.w3spaces.com/sugamspace.html",
+          images: [
+            {
+              src: "https://sugamkaistha24.carrd.co/assets/images/image02.jpg?v=73da0560",
+            },
+          ],
+        },
+        {
+          id: 7,
+          name: "Suraksha Terminal",
+          details: [
+            { id: 1, days: 7, },
+            { id: 2, days: 10,},
+            { id: 3, days: 14,},
+            { id: 4, days: 30,},
+          ],
+          itenary:
+            "Revolutionize your creativity with our intuitive Photoshop web app. Seamlessly edit images, design graphics, and unleash your imagination, all online",
+          locations: [
+            "1: Suraksha Termnal - Use-Ground",
+
+          ],
+          iframeSrc:
+            "https://sugamsuraksha.w3spaces.com/terminal1.1.html",
+          images: [
+            {
+              src: "https://www.checkpoint.com/wp-content/uploads/icon-web-application-security.jpg",
+            },
+          ],
+        }, 
+ {
+          id: 8,
+          name: "Suraksha Web",
+          details: [
+            { id: 1, days: 7, },
+            { id: 2, days: 10,},
+            { id: 3, days: 14,},
+            { id: 4, days: 30,},
+          ],
+          itenary:
+            "Revolutionize your creativity with our Secure Web app. Seamlessly Ip address racking, design reboot system, and encryption system, and more.",
+          locations: [
+            "1: Suraksha Web - Use-Ground",
+
+          ],
+          iframeSrc:
+            "https://sugamsuraksha.w3spaces.com/suraksha.html",
+          images: [
+            {
+              src: "https://imgs.search.brave.com/t7-BkbfohPJDD7VkdtB98bBfYU96AI9_Y4bRWa47Cu8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni85NzEwLzk3MTAx/OTIucG5nP3NlbXQ9/YWlzX2h5YnJpZA",
+            },
+          ],
+        }, 
+        {
+          id: 9,
+          name: "Photo SC",
+          details: [
+            { id: 1, days: 7, },
+            { id: 2, days: 10,},
+            { id: 3, days: 14,},
+            { id: 4, days: 30,},
+          ],
+          itenary:
+            "Revolutionize your creativity with our Secure Web app. Seamlessly Ip address racking, design reboot system, and encryption system, and more.",
+          locations: [
+            "1: PhotoSC - Use-Ground",
+
+          ],
+          iframeSrc:
+            "https://sugamwork.w3spaces.com/sugameditor.html",
+          images: [
+            {
+              src: "https://w7.pngwing.com/pngs/213/958/png-transparent-adobe-photoshop-design-soft-design-tool-design-tool-logo-design-logo-tool-3d-icon-thumbnail.png",
+              caption: "Photoshop",
+            },
+          ],
+        },
+      ],
+    },
+  });
+  Vue.config.silent = true
+
+  var main = new Vue({
+    el: "#app",
+    router,
+    store,
+  });
+    </script>
+  </body>
+</html>

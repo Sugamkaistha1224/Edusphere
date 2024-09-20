@@ -1,0 +1,1244 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+/* ==========================================================================
+    General
+========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.desktop {
+  height: 100vh;
+  background: url(https://images.frandroid.com/wp-content/uploads/2019/12/windows-10-wallpaper.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+/* ==========================================================================
+    Taskbar
+========================================================================== */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  height: 43px;
+  width: 100%;
+  background: #004172;
+}
+
+.taskbar .icons-left {
+  height: 43px;
+  display: inline-block;
+}
+
+.taskbar .icons-left #start-menu, .taskbar .icons-left #tabs-windows {
+  height: 43px;
+  width: 48px;
+  position: relative;
+}
+
+.taskbar .icons-left #start-menu i, .taskbar .icons-left #tabs-windows i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 21px;
+  color: white;
+}
+
+.taskbar .icons-left #search {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/search.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+}
+
+.taskbar .icons-left #folder {
+  height: 43px;
+  width: 49px;
+  background-image: url("http://www.iconarchive.com/download/i98291/dakirby309/simply-styled/File-Explorer.ico");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 21px 21px;
+  background-size: 24px 21px;
+}
+
+.taskbar .icons-left #chrome {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/2048px-Google_Chrome_icon_%28September_2014%29.svg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px 26px;
+}
+
+.taskbar .icons-left #tabs-windows {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/switch-window.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px 25px;
+}
+
+.taskbar .icons-left #tabs-windows:hover {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://image.noelshack.com/fichiers/2018/18/5/1525467821-tabs.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15px 15px;
+  background-size: 28px 15px;
+}
+
+.taskbar .icons-left a {
+  display: table-cell;
+  border-bottom: 2px solid transparent;
+}
+
+.taskbar .icons-left a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.taskbar .icons-left a:not(:first-child) {
+  margin-left: -4px;
+}
+
+.taskbar .icons-left a.border:focus {
+  border-bottom: 2px solid rgba(245, 245, 245, 0.651);
+}
+
+.taskbar .icons-left .px {
+  width: 1px;
+}
+
+.taskbar .icons-left .px a {
+  pointer-events: none;
+}
+
+.taskbar .icons-right {
+  height: 43px;
+  float: right;
+}
+
+.taskbar .icons-right #wifi {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/wifi.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+}
+
+.taskbar .icons-right #sound {
+  height: 43px;
+  width: 49px;
+  background-image: url("https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/volume.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+}
+
+.taskbar .icons-right #return {
+  width: 4px;
+  border-left: 1px solid grey;
+}
+
+.taskbar .icons-right #notifications, .taskbar .icons-right #up {
+  height: 43px;
+  width: 42px;
+  position: relative;
+}
+
+.taskbar .icons-right #notifications i, .taskbar .icons-right #up i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 17px;
+  color: white;
+}
+
+.taskbar .icons-right .clear {
+  height: 43px;
+  width: 7px;
+  display: table-cell;
+}
+
+.taskbar .icons-right .disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.taskbar .icons-right .datetime {
+  display: table-cell;
+  width: 70px !important;
+  cursor: pointer;
+  padding-top: 3px;
+}
+
+.taskbar .icons-right .datetime span {
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 11.3px;
+  color: white;
+}
+
+.taskbar .icons-right .datetime:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.taskbar .icons-right a {
+  display: table-cell;
+}
+
+.taskbar .icons-right a:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.taskbar .icons-right a:not(:first-child) {
+  margin-left: -4px;
+}
+
+.taskbar .icons-right .small-icons {
+  width: 24px !important;
+}
+
+/* ==========================================================================
+    Desktop
+========================================================================== */
+.desktop {
+  display: flex;
+}
+
+.desktop .icon-desktop {
+  padding: 4px 8px 4px 8px;
+  border: 2px solid transparent;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.desktop .icon-desktop a {
+  display: block;
+  text-decoration: none;
+  cursor: default;
+}
+
+.desktop .icon-desktop img {
+  height: 48px;
+  width: 48px;
+}
+
+.desktop .icon-desktop span {
+  display: block;
+  color: white;
+  font-size: 11px;
+  text-align: center;
+}
+
+.desktop .icon-desktop:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.desktop .icon-desktop:first-child {
+  margin-top: 5px;
+}
+
+.desktop #sound-modal {
+  background: #005a9e;
+  position: absolute;
+  right: 0;
+  bottom: 43px;
+  height: 100px;
+  width: 380px;
+  visibility: hidden;
+}
+
+.desktop #sound-modal i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  left: -20px !important;
+  color: whitesmoke;
+}
+
+.desktop #sound-modal span.data-value {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  color: whitesmoke;
+}
+
+.desktop #sound-modal .sound-text {
+  text-align: center;
+  margin-top: 15px;
+  color: whitesmoke;
+}
+
+.desktop #sound-modal .sound-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 70%;
+}
+
+.desktop #sound-modal .sound-progress .bar-sound {
+  width: 230px;
+  height: 5px;
+  background: linear-gradient(to right, #2989d8 0%, #2989d8 50%, grey 51%, grey 51%);
+}
+
+.desktop #sound-modal .sound-progress .bar-sound-drag {
+  height: 20px;
+  width: 7px;
+  background: #0078d7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+}
+
+.desktop #sound-modal:target {
+  visibility: visible;
+  animation-name: open-height;
+  animation-duration: 0.1s;
+  transition: 0.1s;
+}
+
+@keyframes open-height {
+  0% {
+    height: 50px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 100px;
+    opacity: 1;
+  }
+}
+
+.desktop #sound-modal:hover .bar-sound-drag {
+  background: white;
+}
+
+/* Wifi */
+#wifi-modal {
+  background: #005a9e;
+  position: absolute;
+  right: 0;
+  bottom: 43px;
+  height: 600px;
+  width: 380px;
+  color: white;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#wifi-modal:target {
+  visibility: visible !important;
+  animation-name: open;
+  animation-duration: 0.1s;
+  transition: 0.1s;
+}
+
+@keyframes open {
+  0% {
+    height: 550px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 600px;
+    opacity: 1;
+  }
+}
+
+#wifi-modal .list-networks .networks {
+  padding: 20px;
+  cursor: default;
+}
+
+#wifi-modal .list-networks .networks i {
+  transform: rotate(45deg);
+  font-size: 25px;
+}
+
+#wifi-modal .list-networks .networks:first-child {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#wifi-modal .list-networks .networks:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#wifi-modal .list-networks .networks span.name-wifi {
+  font-size: 18px;
+}
+
+#wifi-modal .list-networks .networks span.type-wifi {
+  display: block;
+  font-size: 15px;
+  color: rgba(245, 245, 245, 0.644);
+}
+
+#wifi-modal .list-networks .networks .text-wifi {
+  display: inline-block;
+  position: relative;
+  width: 80%;
+}
+
+#wifi-modal .list-networks .networks .icons-wifi {
+  float: left;
+  padding: 10px 10px 0px 0px;
+  margin-right: 15px;
+}
+
+#wifi-modal .list-networks .networks .propriety {
+  font-size: 15px;
+  color: rgba(245, 245, 245, 0.6);
+  display: block;
+  margin-top: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#wifi-modal .list-networks .networks .propriety:hover {
+  color: rgba(245, 245, 245, 0.9);
+}
+
+#wifi-modal .list-networks .networks button {
+  display: block;
+  color: white;
+  background: #338ed6;
+  border: 2px solid transparent;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 15px;
+  float: right;
+  margin-top: 10px;
+}
+
+#wifi-modal .list-networks .networks button:hover {
+  border: 2px solid rgba(255, 255, 255, 0.63);
+}
+
+#wifi-modal .list-networks .networks button:focus {
+  background: #66aae0;
+  outline: none;
+  border: 2px solid transparent;
+}
+
+#wifi-modal .list-networks .options-wifi {
+  position: absolute;
+  bottom: 0;
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc {
+  display: flex;
+  flex-direction: row;
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc .bloc-options {
+  height: 75px;
+  width: 95px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px 0px 5px 6px;
+  position: relative;
+  border: 2px solid transparent;
+  cursor: default;
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc .bloc-options i {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc .bloc-options span {
+  display: block;
+  position: absolute;
+  bottom: 3px;
+  left: 5px;
+  font-size: 14px;
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc .bloc-options:first-child {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#wifi-modal .list-networks .options-wifi .options-bloc .bloc-options:hover {
+  border: 2px solid rgba(255, 255, 255, 0.63);
+}
+
+#wifi-modal .list-networks .options-wifi .options-wifi-text {
+  margin-left: 6px;
+}
+
+#wifi-modal .list-networks .options-wifi .options-wifi-text span {
+  display: block;
+  font-size: 14px;
+  color: rgba(245, 245, 245, 0.8);
+}
+
+#wifi-modal .list-networks .options-wifi .options-wifi-text span:first-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#wifi-modal .list-networks .options-wifi .options-wifi-text span:not(:first-child) {
+  font-size: 12px;
+  cursor: default;
+}
+
+#start-menu-modal {
+  background: #005a9e;
+  position: absolute;
+  left: 0;
+  bottom: 43px;
+  height: 600px;
+  color: white;
+  visibility: hidden;
+  display: grid;
+  grid-template-columns: 50px 250px 400px;
+  cursor: default;
+}
+
+#start-menu-modal:target {
+  visibility: visible !important;
+  animation-name: open;
+  animation-duration: 0.1s;
+  transition: 0.1s;
+}
+
+@keyframes open {
+  0% {
+    height: 550px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 600px;
+    opacity: 1;
+  }
+}
+
+#start-menu-modal #user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#start-menu-modal #user a {
+  color: whitesmoke;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: default;
+}
+
+#start-menu-modal #user a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#start-menu-modal #user .push {
+  margin-bottom: auto;
+}
+
+#start-menu-modal #apps {
+  display: flex;
+  flex-direction: column;
+  overflow-y: visible;
+  padding: 10px;
+}
+
+#start-menu-modal #apps a {
+  color: whitesmoke;
+  display: flex;
+  text-decoration: none;
+  padding: 2px 10px 0px 20px;
+  line-height: 2.5;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  cursor: default;
+}
+
+#start-menu-modal #apps a img {
+  height: 30px;
+  width: 30px;
+  padding: 4px;
+}
+
+#start-menu-modal #apps a img[alt="sublime"] {
+  background: #292929;
+}
+
+#start-menu-modal #apps a img[alt="access"] {
+  background: #7c2325;
+}
+
+#start-menu-modal #apps a i {
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+#start-menu-modal #apps a span {
+  margin-left: 8px;
+  color: whitesmoke;
+}
+
+#start-menu-modal #apps a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#start-menu-modal #apps a.category {
+  height: 30px;
+}
+
+#start-menu-modal #others .title-others {
+  color: whitesmoke;
+  text-decoration: none;
+  padding: 10px 10px 0px 20px;
+  line-height: 2.5;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+#start-menu-modal #others .box-others {
+  display: inline-flex;
+  padding-left: 20px;
+  flex-wrap: wrap;
+}
+
+#start-menu-modal #others .box-others .box {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  background: #0078d7;
+  margin-left: 4px;
+  border: 2px solid transparent;
+  margin-bottom: 4px;
+}
+
+#start-menu-modal #others .box-others .box img {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#start-menu-modal #others .box-others .box span {
+  position: absolute;
+  bottom: 3px;
+  left: 4px;
+  font-size: 12px;
+}
+
+#start-menu-modal #others .box-others .box:hover {
+  border: 2px solid #7fbbeb;
+}
+
+/* ==========================================================================
+    Chrome
+========================================================================== */
+#chrome-pop-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 900px;
+  background: white;
+  visibility: hidden;
+  border: 2px solid #004275;
+  z-index: 1;
+  resize: both;
+  overflow-y: hidden;
+}
+
+#chrome-pop-up:target {
+  visibility: visible;
+}
+
+#chrome-pop-up iframe {
+  height: 100vh;
+  width: 100%;
+}
+
+.chrome-top {
+  height: 30px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid grey;
+}
+
+.chrome-tabs {
+  float: left;
+  position: relative;
+  margin-left: 12px;
+}
+
+.chrome-tabs .tabs {
+  padding-top: 6px;
+  padding-left: 12px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  width: 180px;
+  background: #f2f2f2;
+  cursor: default;
+}
+
+.chrome-tabs .tabs .text-tabs {
+  font-size: 12px;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+}
+
+.chrome-tabs .tabs .close-tabs {
+  float: right;
+  margin-right: 10px;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height: 0.9;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  font-weight: 500;
+  font-family: monospace;
+}
+
+.chrome-tabs .tabs .close-tabs:hover {
+  background: rgba(255, 0, 0, 0.781);
+  color: white;
+  padding: 1px;
+}
+
+.chrome-tabs .tabs:before {
+  content: " ";
+  position: absolute;
+  left: -33px;
+  bottom: 0;
+  background: grey;
+  width: 64px;
+  height: 1px;
+  transform: rotate(104deg);
+}
+
+.chrome-tabs .tabs:after {
+  content: " ";
+  position: absolute;
+  right: -31px;
+  bottom: 0;
+  background: grey;
+  width: 64px;
+  height: 1px;
+  transform: rotate(70deg);
+}
+
+.chrome-tabs .tabs .icons-tabs img {
+  height: 16px;
+  width: 16px;
+}
+
+.new-tabs {
+  width: 26px;
+  height: 15px;
+  background: #ccc;
+  transform: skew(27deg);
+  position: absolute;
+  top: 7px;
+  right: -30px;
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+
+.new-tabs:hover {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+.chrome-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chrome-close a {
+  text-decoration: none;
+  font-size: 11px;
+  padding: 8px 24px 7px 24px;
+  color: grey;
+}
+
+.chrome-close a:hover:not(:last-child) {
+  background: #dfdfdf;
+  color: black;
+}
+
+.chrome-close a:hover:last-child {
+  background: rgba(255, 0, 0, 0.781);
+  color: white;
+}
+
+.chrome-close a:not(:first-child) {
+  margin-left: -4px;
+}
+
+.triangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 7px solid white;
+}
+
+.triangle-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 10px solid white;
+  transform: scaleX(-1);
+}
+
+.chrome-bottom {
+  background: #f2f2f2;
+  height: 62px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.chrome-bottom .options-bar {
+  height: calc(62px / 2);
+  width: 100%;
+}
+
+.chrome-bottom .options-bar a {
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.chrome-bottom .options-bar a:hover {
+  background: #dfdfdf;
+}
+
+.chrome-bottom .options-bar .icons-bar {
+  padding: 3px;
+  margin-left: 4px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.chrome-bottom .options-bar .icons-bar .arrows {
+  flex: 0 0 85px;
+  flex-direction: row;
+  align-self: center;
+}
+
+.chrome-bottom .options-bar .icons-bar .arrows a {
+  color: #5a5a5a;
+  padding: 4px;
+}
+
+.chrome-bottom .options-bar .search-bar {
+  width: 100%;
+}
+
+.chrome-bottom .options-bar .search-bar input {
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  text-indent: 87px;
+}
+
+.chrome-bottom .options-bar .search-bar input:focus {
+  outline: none;
+}
+
+.chrome-bottom .options-bar .search-bar .info {
+  position: absolute;
+  font-size: 12px;
+  color: #27ae60;
+  border-right: 1px solid rgba(128, 128, 128, 0.808);
+  padding: 9px;
+  cursor: default;
+}
+
+.chrome-bottom .options-bar .search-bar .info:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.chrome-bottom .options-bar .search-bar .star {
+  position: absolute;
+  font-size: 12px;
+  color: grey;
+  padding: 6px;
+  top: 5px;
+  right: 27px;
+  border-radius: 2px;
+  cursor: default;
+}
+
+.chrome-bottom .options-bar .search-bar .star:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.chrome-bottom .options-bar .points-bar {
+  border-radius: 3px;
+}
+
+.chrome-bottom .options-bar .points-bar a {
+  color: #5a5a5a;
+}
+
+.chrome-bottom .options-bar .points-bar .points {
+  display: inline-flex;
+  transform: rotate(90deg);
+  cursor: default;
+  color: grey;
+  margin-top: 6px;
+  border-radius: 3px;
+}
+
+.chrome-bottom .options-bar .points-bar:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.chrome-bottom .bookmarks {
+  flex: 0 0 24%;
+  background: #f2f2f2;
+}
+
+.chrome-bottom .bookmarks .folder-book {
+  cursor: default;
+  border-radius: 1px;
+  display: inline;
+}
+
+.chrome-bottom .bookmarks .folder-book a {
+  font-size: 12px;
+  padding-right: 8px;
+  color: rgba(0, 0, 0, 0.836);
+  cursor: default;
+  padding-bottom: 3px;
+}
+
+.chrome-bottom .bookmarks .folder-book i {
+  padding: 1px 8px 0px 10px;
+  font-size: 16px;
+  vertical-align: bottom;
+}
+
+.chrome-bottom .bookmarks .folder-book i.fa-css3-alt {
+  color: #1b73ba;
+}
+
+.chrome-bottom .bookmarks .folder-book i.fa-windows {
+  color: grey;
+}
+
+.chrome-bottom .bookmarks .folder-book:hover {
+  background: #dfdfdf;
+}
+
+.chrome-bottom .bookmarks .folder-book:first-child {
+  margin-left: 4px;
+}
+
+.chrome-bottom .bookmarks .folder-book:first-child a {
+  vertical-align: baseline;
+}
+
+.chrome-bottom .bookmarks .folder-book span {
+  background: #1f8dd6;
+  padding: 1px 3px 0px 3px;
+  font-size: 13px;
+  color: white;
+  vertical-align: text-top;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+
+  </style>.
+</head>
+<body>
+<!-- Taskbar -->
+<div class="taskbar">
+    <div class="icons">
+        <div class="icons-left">
+            <a href="#start-menu-modal" id="start-menu"><i class="fab fa-windows"></i></a>
+            <a href="#search" id="search"></a>
+            <a href="#tabs" id="tabs-windows"></a>
+            <a href="#" class="px"></a>
+            <a href="#folder" id="folder" class="border"></a>
+            <a href="#chrome-pop-up" id="chrome" class="border"></a>
+        </div>
+        <div class="icons-right">
+            <a href="#up" id="up" class="small-icons"><i class="fas fa-chevron-up"></i></a>
+            <a href="#sound-modal" id="sound" class="small-icons"></a>
+            <a href="#wifi-modal" id="wifi" class="small-icons"></a>
+            <div class="datetime">
+                <span class="hour">17:44</span>
+                <span class="date">25/11/2022</span>
+            </div>
+            <a href="#notifications" id="notifications"><i class="far fa-bell"></i></a>
+            <a href="#" class="clear disabled"></a>
+            <a href="#" id="return"></a>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop -->
+<div class="desktop">
+    <!-- Icons on the desktop -->
+    <div class="icons-dekstop">
+        <div class="icon-desktop">
+          <img src="https://education.hp.gov.in/sites/default/files/hplogo.jpg" alt="">
+            <a href="https://education.hp.gov.in/" alt=""><span>Education H.P</span></a>
+        </div>
+        <div class="icon-desktop">
+            <a href="https://sciencehub.w3spaces.com/Sciencehubsc.html">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image01.jpg?v=73da0560" alt="">
+                <span>Science Hub</span>
+            </a>
+        </div>
+        <div class="icon-desktop">
+            <a href="https://sciencehub.w3spaces.com/sugamspace.html">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image02.jpg?v=73da0560" alt="">
+                <span>Space Information</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Speakers -->
+    <div id="sound-modal">
+        <div class="sound-text">
+            <span>Speakers</span>
+        </div>
+        <div class="sound-progress">
+            <i class="fas fa-volume-up"></i>
+            <div class="bar-sound"></div>
+            <div class="bar-sound-drag"></div>
+            <span class="data-value">50%</span>
+        </div>
+    </div>
+
+    <!-- Wifi -->
+    <div id="wifi-modal">
+        <div class="list-networks">
+            <div class="networks">
+                <div class="icons-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="text-wifi">
+                    <span class="name-wifi">Wifi</span>
+                    <span class="type-wifi">Connected, securised</span>
+                    <span class="propriety">Propriety</span>
+                    <button>Disconnect</button>
+                </div>
+            </div>
+            <div class="networks">
+                <div class="icons-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <span class="name-wifi">Wifi</span>
+                <span class="type-wifi">Open</span>
+            </div>
+            <div class="networks">
+                <div class="icons-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <span class="name-wifi">Wifi</span>
+                <span class="type-wifi">Open</span>
+            </div>
+            <div class="options-wifi">
+                <div class="options-wifi-text">
+                    <span>Options internet & security</span>
+                    <span>Modify options, for a better connection</span>
+                </div>
+                <div class="options-bloc">
+                    <div class="bloc-options">
+                        <i class="fas fa-wifi"></i>
+                        <span>Wifi</span>
+                    </div>
+                    <div class="bloc-options">
+                        <i class="fas fa-plane"></i>
+                        <span>Plane mode</span>
+                    </div>
+                    <div class="bloc-options">
+                        <i class="fab fa-bluetooth-b"></i>
+                        <span>Bluetooth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chrome -->
+<div class="chrome" id="chrome-pop-up">
+    <div class="pop-up">
+        <!-- Taskbar chrome-->
+        <!-- Top -->
+        <div class="chrome-top">
+            <div class="chrome-tabs">
+                <div class="triangle"></div>
+                <div class="tabs">
+                        <span class="icons-tabs">
+                            <i class="fab fa-codepen"></i>
+                        </span>
+                    <span class="text-tabs">kaisthaGroups</span>
+                    <span class="close-tabs">x</span>
+                </div>
+                <div class="triangle-2"></div>
+                <div class="new-tabs"></div>
+            </div>
+            <div class="chrome-close">
+                <a href="#"><i class="fas fa-minus"></i></a>
+                <a href="#"><i class="far fa-window-restore"></i></a>
+                <a href="#"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+        <!-- Bottom -->
+        <div class="chrome-bottom">
+            <div class="options-bar">
+                <div class="icons-bar">
+                    <div class="arrows">
+                        <a href="#"><i class="fas fa-arrow-left"></i></a>
+                        <a href="#"><i class="fas fa-arrow-right"></i></a>
+                        <a href="#"><i class="fas fa-sync"></i></a>
+                    </div>
+                    <div class="search-bar">
+                        <span class="info"><i class="fas fa-lock"></i> Securised</span>
+                        <input type="text" value="http://kaisthagroups.website3.me/">
+                        <span class="star"><i class="far fa-star"></i></span>
+                    </div>
+                    <div class="points-bar">
+                        <div class="points">
+                            <span>•</span>
+                            <span>•</span>
+                            <span>•</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bookmarks">
+                    <div class="folder-book">
+                        <a target="_blank" href="https://peos.w3spaces.com/search.html"><span>Sugam Personal </span>Search Engine</a>
+                    </div>
+                    <div class="folder-book">
+                        <a target="_blank" href="http://sugamcreations.website3.me/help"><i class="fab fa-css3-alt"></i>Help</a>
+                    </div>
+                    <div class="folder-book">
+                        <a target="_blank" href="http://sugamcreations.website3.me/contact"><i class="fab fa-windows"></i>Contact us</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Bookmarks -->
+
+        </div>
+        <iframe src="http://kaisthagroups.website3.me/" frameborder="0" width="800px" height="460px"></iframe>
+    </div>
+</div>
+
+<!-- Start menu -->
+<div id="start-menu-modal">
+    <div id="user">
+        <a class="push" href="#"><i class="fas fa-bars"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+        <a href="#"><i class="fas fa-cog"></i></a>
+        <a href="#"><i class="fas fa-power-off"></i></a>
+    </div>
+    <div id="apps">
+        <a class="category" href="#">OPERATING SYSTEM</a>
+        <a href="https://peos.w3spaces.com/peos.html"><img src="https://assets.codepen.io/354463/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=3&width=512" alt="access"> <span>PeOS</span></a>
+        <a href="https://himalyanpublicschool.w3spaces.com/startmeeting.html"><img src="data:image/jpeg;base64,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" alt="sublime"> <span>Start meeting</span></a>
+          <a class="category" href="#"> Search</a>
+         <a href="https://peosapp.w3spaces.com/sugambrowser.html"><img src="https://minecraftsugam.carrd.co/assets/images/image08.png?v=639253ae" alt="sublime"> <span>Browser Search</span></a>
+          <a href="https://peosapp.w3spaces.com/youtubewebpage.html"><img src="https://minecraftsugam.carrd.co/assets/images/image07.png?v=639253ae" alt="sublime"> <span>Youtube Search</span></a>
+           <a href="https://peosapp.w3spaces.com/jobfinder.html"><img src="https://minecraftsugam.carrd.co/assets/images/image06.png?v=639253ae" alt="sublime"> <span>Job Search</span></a>
+         <a href="https://peos.w3spaces.com/imagesearch.html"><img src="https://sugamkaistha24.carrd.co/assets/images/image37.png?v=3b2025f2" alt="sublime"> <span>Image Search</span></a>
+          
+           <a class="category" href="#">Calculator</a>
+          
+          <a href="https://peosapp.w3spaces.com/cal.html"><img src="https://minecraftsugam.carrd.co/assets/images/image03.png?v=7fbe0e16" alt="sublime"> <span>Simple Calculator</span></a> 
+           <a href="https://peosapp.w3spaces.com/scitificcal.html.html"><img src="https://minecraftsugam.carrd.co/assets/images/image02.png?v=7fbe0e16" alt="sublime"> <span>Scientific Calculator</span></a> 
+            <a href="https://peosapp.w3spaces.com/agecal.html.html"><img src="https://sugamkaistha24.carrd.co/assets/images/image43.png?v=73da0560" alt="sublime"> <span>Age Calculator</span></a> 
+           <a href="https://peosapp.w3spaces.com/logicgatecal.html"><img src="https://sugamkaistha24.carrd.co/assets/images/image42.png?v=73da0560" alt="sublime"> <span>Logic Gates Calculatot</span></a> 
+           <a href="https://peosapp.w3spaces.com/binarycal.html"><img src="https://minecraftsugam.carrd.co/assets/images/image04.png?v=ddfaf137" alt="sublime"> <span>Binary Calender</span></a> 
+           <a href="https://peos.w3spaces.com/calculator.html"><img src="" alt="sublime"> <span>All in one calculaor</span></a>
+
+          <a class="category" href="#">Social Search</a>
+          
+          <a href="https://himalyanpublicschool.w3spaces.com/himalyantube.html"><img src="https://sugamkaistha24.carrd.co/assets/images/image30.png?v=db334ed0" alt="sublime"> <span>AndroTube video Search</span></a> 
+    </div>
+    <div id="others">
+        <div class="title-others">
+            ---- BETA  ----
+        </div>
+        <div class="box-others">
+            <div class="box">
+                 <a href="https://peos.w3spaces.com/duplicatewordfinder.html">
+                <img src="https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/word.png" alt=""></a>
+                <span>Duplicate Word Finder</span>
+            </div>
+            <div class="box">
+               <a href="https://peos.w3spaces.com/Exsel.html">
+                <img src="https://raw.githubusercontent.com/gcazin/pure-css-windows-10-desktop/master/icons/excel.png" alt=""></a>
+                <span>Exsel</span>
+            </div>
+            <div class="box">
+              <a href="https://peos.w3spaces.com/SUGAMDATABSE.html" alt="">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image38.png?v=4a5259bb" alt=""></a>
+                <span>SUGAM Database</span>
+            </div>
+            <div class="box">
+              <a href="https://peos.w3spaces.com/weather.html" alt="">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image39.png?v=4a5259bb" alt=""></a>
+                <span>Weather Update</span>
+            </div>
+            <div class="box">
+              <a href="https://peos.w3spaces.com/daynightsatelitelive.html" alt="">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image40.png?v=4a5259bb" alt=""></a>
+                <span>Satelite View</span>
+            </div>
+            <div class="box">
+              <a href="https://peos.w3spaces.com/notepads.html" alt="">
+                <img src="https://sugamkaistha24.carrd.co/assets/images/image41.png?v=4a5259bb" alt=""></a>
+                <span>NotepadS</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+</html>
